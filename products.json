@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "category": "camera",
+      "image": "images/hero.jpg",
+      "name": "YUMEKA DX-5",
+      "new": true,
+      "description": "Its a 35mm film format camera with 45mm lens..",
+      "price": 90
+    },
+    {
+      "id": 2,
+      "category": "camera",
+      "image": "images/minolta.jpg",
+      "name": "MINOLTA HI-MATIC S2",
+      "new": true,
+      "description": "Its a 35mm film with 38mm lens and in built flash",
+      "price": 60
+    },
+    {
+      "id": 3,
+      "category": "camera",
+      "image": "images/kodaj-kb10.jpg",
+      "name": "KODAK KB 10",
+      "new": true,
+      "description": "Its a 35mm film camera",
+      "price": 30
+    }
+  ]
+}
