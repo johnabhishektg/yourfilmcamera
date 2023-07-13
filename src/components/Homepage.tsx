@@ -1,5 +1,5 @@
 import Hero from "./Hero";
-import { products } from "../../products.json";
+import productjson from "../../products.json";
 import ProductItems from "./ProductItems";
 import Link from "next/link";
 import { Button } from "./ui/Button";
@@ -13,8 +13,8 @@ const Homepage = () => {
       </h1>
       <div className="py-6 flex flex-cols">
         <div className="flex flex-wrap gap-8 sm:mt-2 justify-center">
-          {products.length > 0 &&
-            products.map((item: any) => (
+          {productjson.products.length > 0 &&
+            productjson.products.map((item: any) => (
               <ProductItems key={item.id} {...item} />
             ))}
         </div>

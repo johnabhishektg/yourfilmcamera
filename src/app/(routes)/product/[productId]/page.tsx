@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { products } from "../../../../../products.json";
+import productjson from "../../../../../products.json";
 import { Aperture, RotateCw, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 interface pageProps {
   params: {
@@ -12,12 +13,12 @@ interface pageProps {
 const page: FC<pageProps> = ({ params }) => {
   const { productId } = params;
 
-  const cameraId = products.find((p) => p.id == productId);
+  const cameraId = productjson.products.find((p) => p.id == productId);
 
   return (
     <div className="min-h-fit mt-28 mx-auto p-6">
       <div className="block gap-8 md:flex ">
-        <img
+        <Image
           className="rounded object-cover h-72 w-full md:w-1/2 md:h-96"
           src={"/" + cameraId?.image}
           alt=""
