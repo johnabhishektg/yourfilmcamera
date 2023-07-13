@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { buttonVariants } from "./ui/Button";
 
 type ProductItemProps = {
@@ -9,20 +12,13 @@ type ProductItemProps = {
   price: number;
 };
 
-// export default function ProductItems({
-//   id,
-//   image,
-//   name,
-//   description,
-//   price,
-// }: ProductItemProps) {
 export default function ProductItems({
   id,
   image,
   name,
-  description,
   price,
 }: ProductItemProps) {
+  const router = useRouter();
   //   const { increaseQuantity } = useShoppingCart();
 
   //   const navigate = useNavigate();
@@ -37,6 +33,7 @@ export default function ProductItems({
         className="relative w-full rounded-t h-40 object-cover cursor-pointer"
         src={image}
         alt=""
+        onClick={() => router.push(`/product/${id}`)}
       />
       <footer className="p-4">
         <p className="text-xs font-bold text-gray-400">NEW </p>

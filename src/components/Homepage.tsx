@@ -8,10 +8,10 @@ const Homepage = () => {
   return (
     <div className="px-12">
       <Hero />
-      <h1 className="font-medium text-primary text-4xl text-center md:text-left">
+      <h1 className="font-bold tracking-tight text-4xl text-center lg:text-left">
         Top Picks
       </h1>
-      <div className="py-6 flex flex-cols ">
+      <div className="py-6 flex flex-cols">
         <div className="flex flex-wrap gap-8 sm:mt-2 justify-center">
           {products.length > 0 &&
             products.map((item: any) => (
