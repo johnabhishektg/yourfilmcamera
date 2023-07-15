@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { buttonVariants } from "./ui/Button";
+import Image from "next/image";
 
 type ProductItemProps = {
   id: number;
@@ -33,6 +34,8 @@ export default function ProductItems({
         className="relative w-full rounded-t h-40 object-cover cursor-pointer"
         src={image}
         alt=""
+        width={90}
+        height={90}
         onClick={() => router.push(`/product/${id}`)}
       />
       <footer className="p-4">
