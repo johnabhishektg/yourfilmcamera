@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { buttonVariants } from "./ui/Button";
-import Image from "next/image";
 
 type ProductItemProps = {
   id: number;

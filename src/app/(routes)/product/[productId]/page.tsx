@@ -47,15 +47,15 @@ const page: FC<pageProps> = ({ params }) => {
               <Button className="primary-btn">Add to Cart</Button>
             </div>
             <footer className="flex items-center justify-center gap-8 text-center mt-12 w-full md:mt-20 ">
-              <div>
+              <div className="bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">
                 <Zap className="w-24 rounded-full text-primary" />
                 <p>Fast Delivery</p>
               </div>
-              <div>
+              <div className="bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">
                 <RotateCw className=" w-24 rounded-full text-primary" />
                 <p>30 Day Return</p>
               </div>
-              <div>
+              <div className="bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">
                 <Aperture className=" w-24 rounded-full text-primary" />
                 <p>High Quality</p>
               </div>
@@ -69,6 +69,7 @@ const page: FC<pageProps> = ({ params }) => {
           <p>{cameraId?.description}</p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

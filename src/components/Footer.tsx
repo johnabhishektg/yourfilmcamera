@@ -5,20 +5,20 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
   return (
-    <footer className="mt-12 p-6 text-white bg-primary shadow pb-6">
+    <footer className="mt-12 p-6 antialiased text-white bg-primary shadow pb-6">
       <div className="flex justify-between items-center">
         <div className="p-6">
           <h1 className="font-medium text-white text-2xl">YourFilmCamera</h1>
-          <h3 className="font-light text-white text-xs">
+          <p className="font-light text-white text-xs">
             Express From a Different Perspective
-          </h3>
+          </p>
         </div>
 
         <div className="font-light text-sm text-right">
           <>
             Built by{" "}
             <a target="_blank" href="https://github.com/johnabhishektg">
-              <span className="underline font-medium"> @johntg </span>
+              <span className="font-semibold hover:underline"> @johntg </span>
             </a>
           </>
           <p>Source code available on Github</p>
