@@ -1,3 +1,21 @@
+# Your FilmCamera
+
+> **Warning**
+> This app is a work in progress and shouldn't be considered production ready.
+
+## About
+
+E-commerce Store built using React(Vite) and TypeScript which allows users to purchase film products.
+
+Key features:
+
+- React(Vite) & TypeScript
+- Managing state through **React Context API** to manage the shopping cart's state throughout the app.
+- _Styling_ done using **TailwindCSS**
+- Hosted using **Vercel**
+
+Home page
+![Home page](/client/.github/images/home-page.jpg?raw=0)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

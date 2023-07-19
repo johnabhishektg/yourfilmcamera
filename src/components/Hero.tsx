@@ -6,7 +6,7 @@ import { buttonVariants } from "./ui/Button";
 
 export default function Hero() {
   return (
-    <div className="h-screen pt-32">
+    <div className="h-screen">
       <div className="text-center">
         <Image
           className="animate-fade-in w-full h-36 object-cover rounded"

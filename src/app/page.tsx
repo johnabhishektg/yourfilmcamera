@@ -2,12 +2,14 @@ import Footer from "@/components/Footer";
 import Homepage from "@/components/Homepage";
 import Navbar from "@/components/Navbar";
 
-export default function Home() {
+type childrenProps = {
+  children: React.ReactNode;
+};
+
+export default function Home({ children }: childrenProps) {
   return (
     <div>
-      <Navbar />
       <Homepage />
-      <Footer />
     </div>
   );
 }
