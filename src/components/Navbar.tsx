@@ -70,21 +70,21 @@ export default function Navbar() {
                             YourFilmCamera
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            Ecommerce store for film prooducts built by Nextjs
+                            Ecommerce store for film proaducts built by Nextjs
                             13.
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
                     <ListItem href="/products" title="Cameras">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
+                      Capture your memories.
                     </ListItem>
                     <ListItem href="/products" title="Lens">
-                      How to install dependencies and structure your app.
+                      Eyes
                     </ListItem>
                     <ListItem href="/products" title="Film Rolls">
-                      Styles for headings, paragraphs, lists...etc
+                      Excellent sharpness and fine grain provide high quality
+                      pictures
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>

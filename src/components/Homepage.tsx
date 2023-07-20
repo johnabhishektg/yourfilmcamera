@@ -8,7 +8,7 @@ const Homepage = () => {
   return (
     <div className="px-12">
       <Hero />
-      <h1 className="font-bold tracking-tight text-4xl text-center lg:text-left">
+      <h1 className="font-semibold tracking-tight text-4xl text-center lg:text-left">
         Top Picks
       </h1>
       <div className="py-6 flex flex-cols">

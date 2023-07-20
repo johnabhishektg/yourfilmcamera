@@ -22,9 +22,7 @@ export default function RootLayout({
     >
       <html lang="en" className={inter.className}>
         <body className="min-h-screen pt-32 bg-slate-50 antialiased">
-          <Navbar />
-          <div className="h-full">{children}</div>
-          <Footer />
+          {children}
         </body>
       </html>
     </ClerkProvider>

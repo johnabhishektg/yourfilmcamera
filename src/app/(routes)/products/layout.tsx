@@ -1,13 +1,16 @@
 import Footer from "@/components/Footer";
-import Homepage from "@/components/Homepage";
 import Navbar from "@/components/Navbar";
 
-export default function Home() {
+export default function productsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div>
+    <>
       <Navbar />
-      <Homepage />
+      {children}
       <Footer />
-    </div>
+    </>
   );
 }
