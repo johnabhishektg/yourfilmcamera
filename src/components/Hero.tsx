@@ -26,16 +26,6 @@ export default function Hero() {
         >
           Shop now
         </Link>
-        {/* githun button */}
-        {/* <Link
-          href={"/https:/github.com/johnabhishektg/yourfilmcamera"}
-          className={cn(
-            buttonVariants({ variant: "default", className: "mt-6" })
-          )}
-        >
-          <Github className="h-4 w-4" />
-          Github
-        </Link> */}
       </div>
     </div>
   );
