@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox } from "@/components/ui/Checkbox";
 import Image from "next/image";
 import prodHeader from "../../../../public/images/products-header.jpeg";
@@ -11,8 +13,8 @@ import {
 import ProductItems from "@/components/ProductItems";
 import { useShoppingCart } from "@/lib/store";
 
-const page = () => {
-  const { cart } = useShoppingCart();
+const Page = () => {
+  const { products } = useShoppingCart();
 
   return (
     <div className="min-h-screen mx-12">
@@ -80,8 +82,8 @@ const page = () => {
 
         <div className="flex flex-cols ">
           <div className="flex flex-wrap gap-8 items-center justify-center lg:items-start">
-            {cart.length > 0 &&
-              cart.map((product) => (
+            {products.length > 0 &&
+              products.map((product) => (
                 <ProductItems key={product.id} {...product} />
               ))}
           </div>
@@ -91,4 +93,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -58,16 +58,4 @@ export default function CartButton() {
       </SheetContent>
     </Sheet>
   );
-  // <Button
-  //   variant="outline"
-  //   className="cursor-pointer inline-flex items-center space-x-2 justify-center rounded-md text-sm shadow-sm"
-  // >
-
-  /* {quantity > 0 && (
-        <span className="bg-primary rounded-full w-6 h-6 text-white flex items-center justify-center text-sm absolute -top-3 -right-3">
-        {quantity}
-  </span>
-  )} */
-
-  // </Button>
 }
