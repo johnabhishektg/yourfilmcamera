@@ -11,10 +11,13 @@ import {
 } from "@/components/ui/Card";
 import ProductItems from "@/components/ProductItems";
 import { FC } from "react";
+import { useShoppingCart } from "@/lib/store";
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
+  const { cart } = useShoppingCart();
+
   return (
     <div className="min-h-screen mx-12">
       <Card>
@@ -81,9 +84,9 @@ const page: FC<pageProps> = ({}) => {
 
         <div className="flex flex-cols ">
           <div className="flex flex-wrap gap-8 items-center justify-center lg:items-start lg:justify-start">
-            {productsjson.products.length > 0 &&
-              productsjson.products.map((item) => (
-                <ProductItems product={[]} key={item.id} {...item} />
+            {cart.length > 0 &&
+              cart.map((product) => (
+                <ProductItems key={product.id} {...product} />
               ))}
           </div>
         </div>
