@@ -9,6 +9,7 @@ export default function Hero() {
     <div className="h-screen">
       <div className="text-center">
         <Image
+          priority
           className="animate-fade-in w-full h-36 object-cover rounded"
           src={hero}
           alt="hero-img"

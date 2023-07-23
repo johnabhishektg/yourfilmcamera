@@ -3,7 +3,6 @@ import { Product } from "./createProductSlice";
 
 export interface CartSlice {
   cart: Product[];
-  //   addToCart: (product: Product) => void;
   increaseCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, action: "increase" | "decrease") => void;

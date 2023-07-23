@@ -83,7 +83,7 @@ const page: FC<pageProps> = ({}) => {
           <div className="flex flex-wrap gap-8 items-center justify-center lg:items-start lg:justify-start">
             {productsjson.products.length > 0 &&
               productsjson.products.map((item) => (
-                <ProductItems key={item.id} {...item} />
+                <ProductItems product={[]} key={item.id} {...item} />
               ))}
           </div>
         </div>

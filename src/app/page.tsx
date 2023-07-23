@@ -3,6 +3,7 @@ import Homepage from "@/components/Homepage";
 import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 import Loading from "./loading";
+import React from "react";
 
 export default function Home() {
   return (

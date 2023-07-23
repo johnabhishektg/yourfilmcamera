@@ -12,24 +12,11 @@ import {
 } from "./ui/Sheet";
 import { Button } from "./ui/Button";
 import { useShoppingCart } from "@/lib/store";
-import React, { useEffect } from "react";
+import React from "react";
 import { Product } from "@/lib/slices/createProductSlice";
 
 export default function CartButton() {
   const { cart } = useShoppingCart();
-  const [cartItem, setCartItem] = React.useState<Product[]>([...cart]);
-  const [productItems, setProductItems] = React.useState<Product[]>([...cart]);
-
-  const calculateTotal = () => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
-  };
-
-  useEffect(() => {
-    setCartItem(cart);
-    // calculateTotal();
-  }, [cart]);
-
-  console.log(cartItem.map.length);
 
   return (
     <Sheet>
@@ -39,11 +26,15 @@ export default function CartButton() {
           className="relative cursor-pointer inline-flex items-center space-x-2 justify-center rounded-md  shadow-sm"
         >
           <ShoppingCart className=" w-4 h-4" />
-          {cartItem.map.length > 0 && (
-            <span className="absolute bg-secondary rounded-full w-6 h-6 text-secondary-foreground flex items-center justify-center text-xs -top-2 -right-2">
-              1
-            </span>
-          )}
+          {cart.map.length > 0 &&
+            cart.map((item) => (
+              <span
+                key={item.id}
+                className="absolute bg-secondary rounded-full w-6 h-6 text-secondary-foreground flex items-center justify-center text-xs -top-2 -right-2"
+              >
+                {item.quantity}
+              </span>
+            ))}
         </Button>
       </SheetTrigger>
       <SheetContent className="lg: w-full">

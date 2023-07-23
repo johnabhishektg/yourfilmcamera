@@ -1,26 +1,27 @@
 import { StateCreator } from "zustand";
+import productjson from "../../../products.json";
 
 export interface Product {
-  category: {
-    id: number;
-    image: string;
-    name: string;
-  };
-  description: string;
   id: number;
-  images: string[];
+  category: string;
+  image: string;
+  name: string;
+  new: boolean;
+  description: string;
   price: number;
-  title: string;
   quantity?: number;
 }
 
 export interface ProductSlice {
   products: Product[];
-  //   fetchProducts: () => void;
+  // fetchProducts: () => void;
 }
 
+const { products } = productjson;
+
 export const createProductSlice: StateCreator<ProductSlice> = () => ({
-  products: [],
+  products: [...products],
+
   //   fetchProducts: async () => {},
   //   fetchProducts: async () => {
   //     const res = await fetch(
