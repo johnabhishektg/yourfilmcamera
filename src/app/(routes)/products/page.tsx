@@ -1,7 +1,6 @@
 import { Checkbox } from "@/components/ui/Checkbox";
 import Image from "next/image";
 import prodHeader from "../../../../public/images/products-header.jpeg";
-import productsjson from "../../../../products.json";
 import {
   Card,
   CardContent,
@@ -10,12 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import ProductItems from "@/components/ProductItems";
-import { FC } from "react";
 import { useShoppingCart } from "@/lib/store";
 
-interface pageProps {}
-
-const page: FC<pageProps> = ({}) => {
+const page = () => {
   const { cart } = useShoppingCart();
 
   return (
@@ -53,7 +49,7 @@ const page: FC<pageProps> = ({}) => {
                 <Checkbox id="camera" />
                 <label
                   htmlFor="camera"
-                  className=" cursor-pointer leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  className="cursor-pointer leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   Camera
                 </label>
@@ -83,7 +79,7 @@ const page: FC<pageProps> = ({}) => {
         {/* camera scene */}
 
         <div className="flex flex-cols ">
-          <div className="flex flex-wrap gap-8 items-center justify-center lg:items-start lg:justify-start">
+          <div className="flex flex-wrap gap-8 items-center justify-center lg:items-start">
             {cart.length > 0 &&
               cart.map((product) => (
                 <ProductItems key={product.id} {...product} />
