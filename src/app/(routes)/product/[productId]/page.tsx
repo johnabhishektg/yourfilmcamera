@@ -7,16 +7,14 @@ import { Button } from "@/components/ui/Button";
 import Loading from "./loading";
 import Image from "next/image";
 import { useShoppingCart } from "@/lib/store";
-import { Product } from "@/lib/slices/createProductSlice";
 
 interface pageProps {
   params: {
     productId: number;
   };
-  product: Product;
 }
 
-const page = ({ params }: pageProps) => {
+const Page = ({ params }: pageProps) => {
   const { increaseCart, products } = useShoppingCart();
 
   const { productId } = params;
@@ -74,4 +72,4 @@ const page = ({ params }: pageProps) => {
   );
 };
 
-export default page;
+export default Page;
