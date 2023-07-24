@@ -29,10 +29,7 @@ const Homepage: NextPage = () => {
 
   useEffect(() => {
     setCartItem(cart);
-    // calculateTotal();
   }, [cart]);
-
-  console.log();
 
   return (
     <div className="px-12">
@@ -42,10 +39,6 @@ const Homepage: NextPage = () => {
       </h1>
       <div className="py-6 flex flex-cols">
         <div className="flex flex-wrap gap-8 sm:mt-2 justify-center">
-          {/* {productjson.products.length > 0 &&
-            productjson.products.map((item: any) => (
-              <ProductItems key={item.id} {...item} />
-            ))} */}
           {productItems?.map((product) => (
             <ProductItems key={product.id} {...product} />
           ))}

@@ -45,7 +45,7 @@ export default function CartButton() {
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
           <SheetDescription>
-            {cart.length === 0 && (
+            {cart.map.length === 0 && (
               <div>
                 <div className="col-span-9 mt-4 gap-2 rounded-md border-2 border-dashed border-gray-200 p-6 text-center flex items-center justify-center flex-col h-[200px] md:h-[150px]">
                   <h1 className="text-md font-medium text-primary tracking-tight">
@@ -59,7 +59,7 @@ export default function CartButton() {
                 </SheetPrimitive.Close>
               </div>
             )}
-            {cart.length > 0 && (
+            {cart.map.length > 0 && (
               <div>
                 {cart.map((item) => (
                   <CartItem key={item.id} {...item} />
