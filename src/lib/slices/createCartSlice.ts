@@ -6,8 +6,7 @@ export interface CartSlice {
   increaseCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, action: "increase" | "decrease") => void;
-  showCart: boolean;
-  toggleCart: () => void;
+  getItemQuantity: (productId: number) => void;
 }
 
 export const createCartSlice: StateCreator<CartSlice> = (set, get) => ({
@@ -40,8 +39,8 @@ export const createCartSlice: StateCreator<CartSlice> = (set, get) => ({
     }
     set({ cart });
   },
-  showCart: false,
-  toggleCart: () => {
-    set({ showCart: !get().showCart });
+  getItemQuantity(productId: number) {
+    const cart = get().cart;
+    const findProduct = cart.find((p) => p.id === productId);
   },
 });

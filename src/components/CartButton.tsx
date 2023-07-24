@@ -13,10 +13,14 @@ import {
 import { Button } from "./ui/Button";
 import { useShoppingCart } from "@/lib/store";
 import React from "react";
-import { Product } from "@/lib/slices/createProductSlice";
+import CartItem from "./CartItem";
 
 export default function CartButton() {
   const { cart } = useShoppingCart();
+
+  const calculateTotal = () => {
+    return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
+  };
 
   return (
     <Sheet>
@@ -41,18 +45,32 @@ export default function CartButton() {
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
           <SheetDescription>
-            <div>
-              <div className="col-span-9 mt-4 gap-2 rounded-md border-2 border-dashed border-gray-200 p-6 text-center flex items-center justify-center flex-col h-[200px] md:h-[150px]">
-                <h1 className="text-md font-medium text-primary tracking-tight">
-                  Your cart is empty
-                </h1>
+            {cart.length === 0 && (
+              <div>
+                <div className="col-span-9 mt-4 gap-2 rounded-md border-2 border-dashed border-gray-200 p-6 text-center flex items-center justify-center flex-col h-[200px] md:h-[150px]">
+                  <h1 className="text-md font-medium text-primary tracking-tight">
+                    Your cart is empty
+                  </h1>
+                </div>
+                <SheetPrimitive.Close className="w-full">
+                  <Button variant="default" className="mt-8 w-full text-sm">
+                    Start shopping
+                  </Button>
+                </SheetPrimitive.Close>
               </div>
-              <SheetPrimitive.Close className="w-full">
-                <Button variant="default" className="mt-8 w-full text-sm">
-                  Start shopping
-                </Button>
-              </SheetPrimitive.Close>
-            </div>
+            )}
+            {cart.length > 0 && (
+              <div>
+                {cart.map((item) => (
+                  <CartItem key={item.id} {...item} />
+                ))}
+                <hr className="bg-gray-500 border-t solid mt-6 " />
+                <div className="flex justify-between mt-6 text-right font-semibold text-xl">
+                  <p className="text-primary">Subtotal</p>
+                  <div className="text-primary">${calculateTotal()}</div>
+                </div>
+              </div>
+            )}
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

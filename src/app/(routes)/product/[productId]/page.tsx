@@ -1,18 +1,25 @@
+"use client";
+
 import { FC, Suspense } from "react";
 import productjson from "../../../../../products.json";
 import { Aperture, RotateCw, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Loading from "./loading";
+import { useShoppingCart } from "@/lib/store";
+import { Product } from "@/lib/slices/createProductSlice";
+import { Input } from "@/components/ui/Input";
 
 interface pageProps {
   params: {
     productId: number;
   };
+  product: Product;
 }
 
-const page: FC<pageProps> = ({ params }) => {
-  const { productId } = params;
+const page: FC<pageProps> = ({ params }, product) => {
+  const { increaseCart } = useShoppingCart();
 
+  const { productId } = params;
   const cameraId = productjson.products.find((p) => p.id == productId);
 
   return (
@@ -35,13 +42,17 @@ const page: FC<pageProps> = ({ params }) => {
               ${cameraId?.price}
             </p>
             <div className="mt-6 flex gap-4">
-              <input
+              <Input
                 className="border-2 border-slate-500 rounded w-12 px-2"
                 type="number"
                 placeholder="0"
                 readOnly
-              ></input>
-              <Button variant="default">Add to Cart</Button>
+              >
+                {product?.quantity}
+              </Input>
+              <Button onClick={() => increaseCart(product)} variant="default">
+                Add to Cart
+              </Button>
             </div>
             <footer className="flex items-center justify-center gap-8 text-center mt-12 w-full md:mt-20 ">
               <div className="w-32 h-20 bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">

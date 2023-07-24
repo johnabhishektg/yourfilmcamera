@@ -17,10 +17,6 @@ const Homepage: NextPage = () => {
   const [cartItem, setCartItem] = React.useState<Product[]>([]);
   const [productItems, setProductItems] = React.useState<Product[]>([]);
 
-  const calculateTotal = () => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
-  };
-
   useEffect(() => {
     productjson.products.map((item) => {
       setProductItems([item]);
