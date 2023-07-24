@@ -14,13 +14,18 @@ interface pageProps {
     productId: number;
   };
   product: Product;
+  currProduct: Product;
 }
 
-const page: FC<pageProps> = ({ params }, product) => {
-  const { increaseCart } = useShoppingCart();
+const page: FC<pageProps> = ({ params }) => {
+  const { increaseCart, getItemQuantity, products } = useShoppingCart();
 
   const { productId } = params;
   const cameraId = productjson.products.find((p) => p.id == productId);
+  const product = products.find((p) => p.id == productId);
+  const quantity = getItemQuantity(productId);
+
+  console.log(quantity);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -41,16 +46,8 @@ const page: FC<pageProps> = ({ params }, product) => {
             <p className="font-normal mt-2 text-2xl md:mt-6 md:font-bold md:text-4xl">
               ${cameraId?.price}
             </p>
-            <div className="mt-6 flex gap-4">
-              <Input
-                className="border-2 border-slate-500 rounded w-12 px-2"
-                type="number"
-                placeholder="0"
-                readOnly
-              >
-                {product?.quantity}
-              </Input>
-              <Button onClick={() => increaseCart(product)} variant="default">
+            <div className="mt-6 ">
+              <Button onClick={() => increaseCart(product!)} variant="default">
                 Add to Cart
               </Button>
             </div>

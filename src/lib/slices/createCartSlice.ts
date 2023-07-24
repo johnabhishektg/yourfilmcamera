@@ -17,7 +17,7 @@ export const createCartSlice: StateCreator<CartSlice> = (set, get) => ({
     if (findProduct) {
       findProduct.quantity! += 1;
     } else {
-      cart.push({ ...product, quantity: 1 });
+      cart.push({ ...product, quantity: 1, id: product.id });
     }
     set({ cart });
   },
@@ -41,6 +41,6 @@ export const createCartSlice: StateCreator<CartSlice> = (set, get) => ({
   },
   getItemQuantity(productId: number) {
     const cart = get().cart;
-    const findProduct = cart.find((p) => p.id === productId);
+    return cart.find((p) => p.id === productId)?.quantity || 0;
   },
 });
