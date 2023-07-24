@@ -28,8 +28,8 @@ const Page = ({ params }: pageProps) => {
           <Image
             className="rounded object-cover h-72 w-full md:w-1/2 md:h-96"
             src={"/" + cameraId?.image}
-            width={90}
-            height={90}
+            width={1080}
+            height={720}
             alt=""
           />
           <div>
