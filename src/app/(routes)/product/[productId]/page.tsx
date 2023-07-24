@@ -1,37 +1,33 @@
 "use client";
 
-import { FC, Suspense } from "react";
+import { Suspense } from "react";
 import productjson from "../../../../../products.json";
 import { Aperture, RotateCw, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Loading from "./loading";
+import Image from "next/image";
 import { useShoppingCart } from "@/lib/store";
 import { Product } from "@/lib/slices/createProductSlice";
-import { Input } from "@/components/ui/Input";
 
 interface pageProps {
   params: {
     productId: number;
   };
   product: Product;
-  currProduct: Product;
 }
 
-const page: FC<pageProps> = ({ params }) => {
-  const { increaseCart, getItemQuantity, products } = useShoppingCart();
+const page = ({ params }: pageProps) => {
+  const { increaseCart, products } = useShoppingCart();
 
   const { productId } = params;
   const cameraId = productjson.products.find((p) => p.id == productId);
   const product = products.find((p) => p.id == productId);
-  const quantity = getItemQuantity(productId);
-
-  console.log(quantity);
 
   return (
     <Suspense fallback={<Loading />}>
       <div className="min-h-screen mx-auto p-6">
         <div className="block gap-8 md:flex ">
-          <img
+          <Image
             className="rounded object-cover h-72 w-full md:w-1/2 md:h-96"
             src={"/" + cameraId?.image}
             width={90}
