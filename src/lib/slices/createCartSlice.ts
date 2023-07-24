@@ -11,6 +11,7 @@ export interface CartSlice {
 
 export const createCartSlice: StateCreator<CartSlice> = (set, get) => ({
   cart: [],
+
   increaseCart: (product: Product) => {
     const cart = get().cart;
     const findProduct = cart.find((p) => p.id === product.id);

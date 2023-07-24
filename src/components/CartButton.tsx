@@ -22,6 +22,11 @@ export default function CartButton() {
     return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
   };
 
+  const cartQuantity = cart.reduce(
+    (quantity, item) => item.quantity! + quantity,
+    0
+  );
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -30,22 +35,18 @@ export default function CartButton() {
           className="relative cursor-pointer inline-flex items-center space-x-2 justify-center rounded-md  shadow-sm"
         >
           <ShoppingCart className=" w-4 h-4" />
-          {cart.map.length > 0 &&
-            cart.map((item) => (
-              <span
-                key={item.id}
-                className="absolute bg-secondary rounded-full w-6 h-6 text-secondary-foreground flex items-center justify-center text-xs -top-2 -right-2"
-              >
-                {item.quantity}
-              </span>
-            ))}
+          {cart.length > 0 && (
+            <span className="absolute bg-secondary rounded-full w-6 h-6 text-secondary-foreground flex items-center justify-center text-xs -top-2 -right-2">
+              {cartQuantity}
+            </span>
+          )}
         </Button>
       </SheetTrigger>
       <SheetContent className="lg: w-full">
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
           <SheetDescription>
-            {cart.map.length === 0 && (
+            {cart.length === 0 && (
               <div>
                 <div className="col-span-9 mt-4 gap-2 rounded-md border-2 border-dashed border-gray-200 p-6 text-center flex items-center justify-center flex-col h-[200px] md:h-[150px]">
                   <h1 className="text-md font-medium text-primary tracking-tight">
@@ -59,7 +60,7 @@ export default function CartButton() {
                 </SheetPrimitive.Close>
               </div>
             )}
-            {cart.map.length > 0 && (
+            {cart.length > 0 && (
               <div>
                 {cart.map((item) => (
                   <CartItem key={item.id} {...item} />
