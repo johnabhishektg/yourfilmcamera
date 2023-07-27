@@ -3,6 +3,7 @@ import productjson from "../../products.json";
 import { Button } from "./ui/Button";
 import { PenBox, Trash } from "lucide-react";
 import { useShoppingCart } from "@/lib/store";
+import EditButton from "./EditButton";
 
 export default function CartItem(product: Product) {
   const { removeFromCart } = useShoppingCart();
@@ -29,9 +30,7 @@ export default function CartItem(product: Product) {
         </div>
       </div>
       <div className="flex gap-2 justify-end ">
-        <Button variant="outline" className="p-3 h-8">
-          <PenBox className="w-4 h-4" />
-        </Button>
+        <EditButton product={product} productId={product.id} />
 
         <Button
           onClick={() => removeFromCart(product.id)}

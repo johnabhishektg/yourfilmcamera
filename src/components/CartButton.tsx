@@ -10,10 +10,11 @@ import {
   SheetDescription,
   SheetPrimitive,
 } from "./ui/Sheet";
-import { Button } from "./ui/Button";
+import { Button, buttonVariants } from "./ui/Button";
 import { useShoppingCart } from "@/lib/store";
 import React from "react";
 import CartItem from "./CartItem";
+import Link from "next/link";
 
 export default function CartButton() {
   const { cart } = useShoppingCart();
@@ -65,10 +66,18 @@ export default function CartButton() {
                 {cart.map((item) => (
                   <CartItem key={item.id} {...item} />
                 ))}
-                <hr className="bg-gray-500 border-t solid mt-6 " />
+                <hr className="bg-gray-500 border-t solid mt-6" />
                 <div className="flex justify-between mt-6 text-right font-semibold text-xl">
                   <p className="text-primary">Subtotal</p>
                   <div className="text-primary">${calculateTotal()}</div>
+                </div>
+                <div className="mt-6 space-y-2">
+                  <Link
+                    className={buttonVariants({ className: "w-full" })}
+                    href={"/checkout"}
+                  >
+                    Checkout
+                  </Link>
                 </div>
               </div>
             )}

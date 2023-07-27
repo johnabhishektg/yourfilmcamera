@@ -19,12 +19,10 @@ Home page
 ![Home page](.github/images/home-page.jpg?raw=0)
 
 Cart popup
-![Cart page](.github/images/product-admin.jpeg?raw=0)
+![Cart page](.github/images/cart-page.jpg?raw=0)
 
 Camera page
 ![Cart page](.github/images/camera-page.JPG?raw=0)
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Running the app
 

@@ -1,17 +1,14 @@
-import { Github, Linkedin } from "lucide-react";
-import { FC } from "react";
+import { Aperture, Github, Linkedin } from "lucide-react";
 
-interface FooterProps {}
-
-const Footer: FC<FooterProps> = ({}) => {
+const Footer = ({}) => {
   return (
-    <footer className="mt-12 p-6 antialiased text-white bg-primary shadow pb-6">
+    <footer className="mt-12 p-6 antialiased text-secondary bg-primary shadow pb-6">
       <div className="flex justify-between items-center">
-        <div className="p-6">
-          <h1 className="font-medium text-white text-2xl">YourFilmCamera</h1>
-          <p className="font-light text-white text-xs">
-            Express From a Different Perspective
-          </p>
+        <div className="flex space-x-1 p-6">
+          <Aperture />
+          <h2 className="hidden font-bold cursor-pointer sm:inline-block">
+            YourFilmCamera
+          </h2>
         </div>
 
         <div className="font-light text-sm text-right">
