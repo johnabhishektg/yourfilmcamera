@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/Dialog";
-import { PenBox } from "lucide-react";
+import { Minus, PenBox, Plus } from "lucide-react";
 
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
@@ -45,7 +45,7 @@ const EditButton = ({ product, productId }: EditButtonProps) => {
             onClick={() => increaseCart(product)}
             className="text-xl"
           >
-            +
+            <Plus className="w-4 h-4" />
           </Button>
           <Input
             className=" mx-4 h-10 w-12 "
@@ -59,7 +59,7 @@ const EditButton = ({ product, productId }: EditButtonProps) => {
               onClick={() => removeFromCart(productId)}
               className="text-xl"
             >
-              -
+              <Minus className="w-4 h-4" />
             </Button>
           ) : (
             <Button

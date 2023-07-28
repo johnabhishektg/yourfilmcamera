@@ -4,10 +4,28 @@ import { useRouter } from "next/navigation";
 import { Button } from "./ui/Button";
 import { Product } from "@/lib/slices/createProductSlice";
 import { useShoppingCart } from "@/lib/store";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "./ui/Toast";
+import { Sheet, SheetTrigger } from "./ui/Sheet";
+import Link from "next/link";
 
 export default function ProductItems(product: Product) {
   const router = useRouter();
+  const { toast } = useToast();
   const { increaseCart } = useShoppingCart();
+
+  function increaseCartItems() {
+    increaseCart(product);
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart`,
+      action: (
+        <Link href="/checkout">
+          <ToastAction altText="View">View</ToastAction>
+        </Link>
+      ),
+    });
+  }
 
   return (
     <header className="border w-64 h-82 rounded shadow-md">
@@ -24,7 +42,7 @@ export default function ProductItems(product: Product) {
         <h2 className="mt-1 font-medium text-primary">{product.name}</h2>
         <div className="mt-2 flex justify-between items-center content-center">
           <p className="font-bold text-2xl">${product.price}</p>
-          <Button onClick={() => increaseCart(product)}>Add to cart</Button>
+          <Button onClick={() => increaseCartItems()}>Add to cart</Button>
         </div>
       </footer>
     </header>
