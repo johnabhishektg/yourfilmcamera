@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/Button";
 import Loading from "./loading";
 import Image from "next/image";
 import { useShoppingCart } from "@/lib/store";
+import Link from "next/link";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/Toast";
 
 interface pageProps {
   params: {
@@ -16,10 +19,23 @@ interface pageProps {
 
 const Page = ({ params }: pageProps) => {
   const { increaseCart, products } = useShoppingCart();
-
+  const { toast } = useToast();
   const { productId } = params;
   const cameraId = productjson.products.find((p) => p.id == productId);
   const product = products.find((p) => p.id == productId);
+
+  function increaseCartItems() {
+    increaseCart(product!);
+    toast({
+      title: "Added to cart",
+      description: `${product?.name} has been added to your cart`,
+      action: (
+        <Link href="/checkout">
+          <ToastAction altText="View">View</ToastAction>
+        </Link>
+      ),
+    });
+  }
 
   return (
     <Suspense fallback={<Loading />}>
@@ -41,20 +57,24 @@ const Page = ({ params }: pageProps) => {
               ${cameraId?.price}
             </p>
             <div className="mt-6 ">
-              <Button onClick={() => increaseCart(product!)} variant="default">
+              <Button
+                className="w-full lg:w-fit"
+                onClick={() => increaseCartItems()}
+                variant="default"
+              >
                 Add to Cart
               </Button>
             </div>
-            <footer className="flex items-center justify-center gap-8 text-center mt-12 w-full md:mt-20 ">
-              <div className="w-32 h-20 bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">
+            <footer className="flex items-center justify-center gap-8 text-center mt-12 lg:mt-20">
+              <div className=" bg-secondary p-4 space-y-1 inline-block rounded">
                 <Zap className="w-24 rounded-full text-primary" />
                 <p>Fast Delivery</p>
               </div>
-              <div className="w-32 h-20 bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">
+              <div className=" bg-secondary p-4 space-y-1  inline-block rounded">
                 <RotateCw className=" w-24 rounded-full text-primary" />
                 <p>30 Day Return</p>
               </div>
-              <div className="w-32 h-20 bg-gray-100 space-y-1 px-4 py-2 inline-block rounded">
+              <div className=" bg-secondary p-4 space-y-1  inline-block rounded">
                 <Aperture className=" w-24 rounded-full text-primary" />
                 <p>High Quality</p>
               </div>

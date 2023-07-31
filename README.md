@@ -18,9 +18,6 @@ Key features:
 Home page
 ![Home page](.github/images/home-page.jpg?raw=0)
 
-Cart popup
-![Cart page](.github/images/cart-page.jpg?raw=0)
-
 Camera page
 ![Cart page](.github/images/camera-page.JPG?raw=0)
 

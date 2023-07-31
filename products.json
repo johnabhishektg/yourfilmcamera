@@ -26,6 +26,24 @@
       "new": true,
       "description": "Its a 35mm film camera",
       "price": 30
+    },
+    {
+      "id": 4,
+      "category": "camera",
+      "image": "images/agfa-synchro-120mm.jpg",
+      "name": "AGFA Synchro Box",
+      "new": true,
+      "description": "120 mm film format camera with a 105mm f11 (1 element Meniscus design) with 2 Viewfinders and Aperture selectable between f11 / f16, Shutter: 1/50s + B. ",
+      "price": 120
+    },
+    {
+      "id": 5,
+      "category": "lens",
+      "image": "images/helios-44M.jpg",
+      "name": "Helios 44M",
+      "new": true,
+      "description": "Its a 58mm lens f2 and has M42 mount.",
+      "price": 40
     }
   ]
 }

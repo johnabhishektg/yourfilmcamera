@@ -1,12 +1,23 @@
 import { Product } from "@/lib/slices/createProductSlice";
 import productjson from "../../products.json";
 import { Button } from "./ui/Button";
-import { PenBox, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import { useShoppingCart } from "@/lib/store";
 import EditButton from "./EditButton";
+import { useToast } from "./ui/use-toast";
 
 export default function CartItem(product: Product) {
   const { removeFromCart } = useShoppingCart();
+  const { toast } = useToast();
+
+  function removeFromCartToast() {
+    removeFromCart(product.id);
+    toast({
+      title: "Removed from cart",
+      description: `${product.name} has been removed from your cart`,
+      variant: "destructive",
+    });
+  }
 
   const item = productjson.products.find((i) => i.id === product.id);
   if (item == null) return null;
@@ -33,7 +44,7 @@ export default function CartItem(product: Product) {
         <EditButton product={product} productId={product.id} />
 
         <Button
-          onClick={() => removeFromCart(product.id)}
+          onClick={() => removeFromCartToast()}
           variant="outline"
           className="p-3 h-8"
         >

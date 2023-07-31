@@ -4,7 +4,7 @@ import Hero from "./Hero";
 import productjson from "../../products.json";
 import ProductItems from "./ProductItems";
 import Link from "next/link";
-import { Button } from "./ui/Button";
+import { Button, buttonVariants } from "./ui/Button";
 import { useEffect } from "react";
 import { Product } from "@/lib/slices/createProductSlice";
 import { useShoppingCart } from "@/lib/store";
@@ -31,15 +31,39 @@ const Homepage: NextPage = () => {
     setCartItem(cart);
   }, [cart]);
 
+  let topPickArray = [];
+  for (let i = 0; i < 4; i++) {
+    topPickArray.push({
+      id: products[i].id,
+      category: products[i].category,
+      image: products[i].image,
+      name: products[i].name,
+      new: products[i].new,
+      description: products[i].description,
+      price: products[i].price,
+    });
+  }
+
   return (
     <div className="px-12">
       <Hero />
-      <h1 className="font-semibold tracking-tight text-4xl text-center lg:text-left">
-        Top Picks
-      </h1>
+      <div className="flex justify-center items-center lg:justify-between">
+        <h1 className="font-semibold tracking-tight text-4xl text-center lg:text-left">
+          Top Picks
+        </h1>
+        <Link
+          href={"/products"}
+          className={buttonVariants({
+            variant: "link",
+            className: "cursor-pointer text-lg text-primary hidden lg:flex",
+          })}
+        >
+          Show More
+        </Link>
+      </div>
       <div className="py-6 flex flex-cols">
-        <div className="flex flex-wrap gap-8 sm:mt-2 justify-center">
-          {productItems?.map((product) => (
+        <div className="flex flex-wrap gap-8 justify-center lg:gap-16 sm:mt-2">
+          {topPickArray?.map((product) => (
             <ProductItems key={product.id} {...product} />
           ))}
         </div>

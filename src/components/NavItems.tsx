@@ -60,7 +60,7 @@ const NavItems: FC<NavItemsProps> = ({}) => {
                       YourFilmCamera
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Ecommerce store for film proaducts built by Nextjs 13.
+                      Ecommerce store for film products built by Nextjs 13.
                     </p>
                   </a>
                 </NavigationMenuLink>
