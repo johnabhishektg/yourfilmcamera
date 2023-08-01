@@ -27,6 +27,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/.tsx",
     ".next/types/**/*.ts",
     ".next/types/app/(routes)/product/[productId]/page.tsx"
   ],

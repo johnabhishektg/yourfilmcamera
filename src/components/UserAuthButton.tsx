@@ -1,19 +1,18 @@
 "use client";
 
-import { Button } from "./ui/Button";
-import { useRouter } from "next/navigation";
+import { buttonVariants } from "./ui/Button";
+import Link from "next/link";
 
-const UserAuthButton = ({}) => {
-  const router = useRouter();
+export default async function UserAuthButton() {
   return (
-    <Button
-      variant="default"
-      className="cursor-pointer shadow font-medium space-x-2 lg:text-xs"
-      onClick={() => router.push("/sign-in")}
+    <Link
+      href={"/sign-in"}
+      className={buttonVariants({
+        variant: "default",
+        className: "cursor-pointer shadow font-medium space-x-2 lg:text-xs",
+      })}
     >
       Sign In
-    </Button>
+    </Link>
   );
-};
-
-export default UserAuthButton;
+}

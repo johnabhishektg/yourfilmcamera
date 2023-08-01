@@ -65,24 +65,23 @@ const Page = ({ params }: pageProps) => {
                 Add to Cart
               </Button>
             </div>
-            <footer className="flex items-center justify-center gap-8 text-center mt-12 lg:mt-20">
-              <div className=" bg-secondary p-4 space-y-1 inline-block rounded">
+            <footer className="flex  items-center justify-center gap-8 text-center mt-12 lg:mt-20 ">
+              <div className=" bg-secondary p-2 space-y-1 inline-block rounded">
                 <Zap className="w-24 rounded-full text-primary" />
-                <p>Fast Delivery</p>
+                <p className="text-sm lg:text-base">Fast Delivery</p>
               </div>
-              <div className=" bg-secondary p-4 space-y-1  inline-block rounded">
-                <RotateCw className=" w-24 rounded-full text-primary" />
-                <p>30 Day Return</p>
+              <div className="bg-secondary p-2 space-y-1 inline-block rounded">
+                <RotateCw className="w-full flex items-center justify-center rounded-full text-primary" />
+                <p className="text-sm lg:text-base">30 Day Return</p>
               </div>
-              <div className=" bg-secondary p-4 space-y-1  inline-block rounded">
+              <div className=" bg-secondary p-2 space-y-1  inline-block rounded">
                 <Aperture className=" w-24 rounded-full text-primary" />
-                <p>High Quality</p>
+                <p className="text-sm lg:text-base">High Quality</p>
               </div>
             </footer>
           </div>
         </div>
 
-        {/* DESCRIPTION */}
         <div className="mt-24">
           <h3 className="text-2xl font-semibold">Description:</h3>
           <p>{cameraId?.description}</p>
