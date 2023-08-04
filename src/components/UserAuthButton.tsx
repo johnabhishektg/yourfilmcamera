@@ -9,7 +9,8 @@ export default async function UserAuthButton() {
       href={"/sign-in"}
       className={buttonVariants({
         variant: "default",
-        className: "cursor-pointer shadow font-medium space-x-2 lg:text-xs",
+        className:
+          "cursor-pointer shadow font-medium h-8 px-2 lg:px-3 space-x-2 text-xs",
       })}
     >
       Sign In

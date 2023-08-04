@@ -6,11 +6,8 @@ import React from "react";
 import CartButton from "./CartButton";
 import NavItems from "./NavItems";
 import { currentUser } from "@clerk/nextjs";
-import { Avatar } from "./ui/Avatar";
 
 export default async function Navbar() {
-  // const { userId } = auth();
-  // return <div>User Id: {userId}</div>;
   const user = await currentUser();
 
   return (
@@ -22,7 +19,7 @@ export default async function Navbar() {
             YourFilmCamera
           </h2>
         </Link>
-        <ul className="hidden list-none items-center justify-center md:flex">
+        <ul className="hidden list-none items-center justify-center lg:flex">
           <NavItems />
         </ul>
       </div>

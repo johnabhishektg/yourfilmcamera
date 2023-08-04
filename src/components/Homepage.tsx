@@ -70,7 +70,7 @@ const Homepage: NextPage = () => {
       </div>
       <div className="my-4 flex justify-center">
         <Link href={"/products"}>
-          <Button variant="outline" className="sm:hidden">
+          <Button variant="outline" className="md:hidden">
             Show more
           </Button>
         </Link>
