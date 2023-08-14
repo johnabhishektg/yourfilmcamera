@@ -33,7 +33,7 @@ export default function CartButton() {
       <SheetTrigger asChild>
         <Button
           variant="outline"
-          className="relative cursor-pointer inline-flex items-center space-x-2 rounded-md h-8 px-2 lg:px-3"
+          className="relative cursor-pointer inline-flex items-center space-x-2 rounded-md px-2  h-auto lg:h-8  lg:px-3"
         >
           <ShoppingCart className=" w-4 h-4" />
           {cart.length > 0 && (

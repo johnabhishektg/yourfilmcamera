@@ -6,10 +6,10 @@ import { Product } from "@/lib/slices/createProductSlice";
 import { useShoppingCart } from "@/lib/store";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "./ui/Toast";
-import { Sheet, SheetTrigger } from "./ui/Sheet";
 import Link from "next/link";
+import { getAllProducts } from "@/app/(actions)/product";
 
-export default function ProductItems(product: Product) {
+export default async function ProductItems(product: Product) {
   const router = useRouter();
   const { toast } = useToast();
   const { increaseCart } = useShoppingCart();

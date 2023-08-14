@@ -1,14 +1,9 @@
 "use server";
 
 import { products, type Product, users } from "@/lib/db/schema";
-import productjson from "../../../products.json";
 import { db } from "@/lib/db";
 
-export async function generateProducts() {
-  const allProducts: Product[] = [];
-
-  const product = productjson.products;
-
+export async function getAllProducts() {
   // for (let i = 0; i < product.length; i++) {
   //   allProducts.push({
   //     id: product[i].id,

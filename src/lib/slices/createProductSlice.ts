@@ -16,9 +16,7 @@ export interface ProductSlice {
   products: Product[];
   // fetchProducts: () => void;
 }
-
 const { products } = productjson;
-
 export const createProductSlice: StateCreator<ProductSlice> = () => ({
   products: [...products],
 
@@ -26,6 +24,6 @@ export const createProductSlice: StateCreator<ProductSlice> = () => ({
   //     const res = await fetch(
   //       "https://api.escuelajs.co/api/v1/products?offset=0&limit=20"
   //     );
-  //     set({ products: await res.json() });
+  // set({ products: await res.json() });
   //   },
 });

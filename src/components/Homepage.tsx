@@ -10,8 +10,11 @@ import { Product } from "@/lib/slices/createProductSlice";
 import { useShoppingCart } from "@/lib/store";
 import React from "react";
 import { NextPage } from "next";
+import { GenerateButton } from "./GenerateButton";
+import { db } from "@/lib/db";
+import { products } from "@/lib/db/schema";
 
-const Homepage: NextPage = () => {
+const Homepage: NextPage = async () => {
   const { cart, products } = useShoppingCart();
 
   const [cartItem, setCartItem] = React.useState<Product[]>([]);

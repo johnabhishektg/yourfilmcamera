@@ -13,7 +13,7 @@ import {
 import ProductItems from "@/components/ProductItems";
 import { useShoppingCart } from "@/lib/store";
 
-const Page = () => {
+const Page = async () => {
   const { products } = useShoppingCart();
 
   return (

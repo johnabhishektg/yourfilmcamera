@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import productjson from "../../../../../products.json";
 import { Aperture, RotateCw, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import Loading from "./loading";
+import Loading from "../../loading";
 import Image from "next/image";
 import { useShoppingCart } from "@/lib/store";
 import Link from "next/link";
