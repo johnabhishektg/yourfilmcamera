@@ -19,4 +19,6 @@ export async function getAllProducts() {
   // await db.insert(products).values(allProducts);
   // await db.select().from(users).where(eq(users.id, 1));
   const prod = await db.select().from(products);
+
+  return prod;
 }

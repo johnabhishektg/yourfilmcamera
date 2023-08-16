@@ -69,10 +69,10 @@ const NavItems: FC<NavItemsProps> = ({}) => {
                 Capture your memories.
               </ListItem>
               <ListItem href="/products" title="Lens">
-                Eyes
+                Eye of the Camera
               </ListItem>
               <ListItem href="/products" title="Film Rolls">
-                Excellent sharpness and fine grain provide high quality pictures
+                High quality pictures
               </ListItem>
             </ul>
           </NavigationMenuContent>

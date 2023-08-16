@@ -7,9 +7,20 @@ import { useShoppingCart } from "@/lib/store";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "./ui/Toast";
 import Link from "next/link";
-import { getAllProducts } from "@/app/(actions)/product";
 
-export default async function ProductItems(product: Product) {
+// type ProductItemsProps = {
+//   id: number;
+//   description: string | null;
+//   name: string;
+//   new: boolean | null;
+//   images: null;
+//   category: "cameras" | "lens" | "film rolls";
+//   price: string;
+//   createdAt: Date | null;
+//   key: number;
+// };
+
+export default function ProductItems(product: Product) {
   const router = useRouter();
   const { toast } = useToast();
   const { increaseCart } = useShoppingCart();
