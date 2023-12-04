@@ -19,11 +19,10 @@ export interface ProductSlice {
 const { products } = productjson;
 export const createProductSlice: StateCreator<ProductSlice> = () => ({
   products: [...products],
-
-  //   fetchProducts: async () => {
-  //     const res = await fetch(
-  //       "https://api.escuelajs.co/api/v1/products?offset=0&limit=20"
-  //     );
+  // fetchProducts: async () => {
+  // const res = await fetch(
+  // "https://api.escuelajs.co/api/v1/products?offset=0&limit=20"
+  // );
   // set({ products: await res.json() });
-  //   },
+  // },
 });

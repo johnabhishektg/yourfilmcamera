@@ -3,6 +3,18 @@
 import { products, type Product, users } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 
+type ProductItemsProps = {
+  id: number;
+  description: string | null;
+  name: string;
+  new: boolean | null;
+  images: null;
+  category: "cameras" | "lens" | "film rolls";
+  price: string;
+  createdAt: Date | null;
+  key: number;
+};
+
 export async function getAllProducts() {
   // for (let i = 0; i < product.length; i++) {
   //   allProducts.push({
@@ -18,7 +30,21 @@ export async function getAllProducts() {
   // }
   // await db.insert(products).values(allProducts);
   // await db.select().from(users).where(eq(users.id, 1));
-  const prod = await db.select().from(products);
 
+  const prod = await db
+    .select({
+      id: products.id,
+      category: products?.category || "cameras",
+      images: products.images,
+      name: products.name,
+      new: products.new,
+      description: products.description,
+      price: products.price,
+      createdAt: products.createdAt,
+    })
+    .from(products);
+
+  // const prod = await db.select().from(products);
   return prod;
+  // console.log(prod);
 }

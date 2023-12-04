@@ -1,5 +1,3 @@
-"use client";
-
 import { Checkbox } from "@/components/ui/Checkbox";
 import Image from "next/image";
 import prodHeader from "../../../../public/images/products-header.jpeg";
@@ -11,13 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import ProductItems from "@/components/ProductItems";
-import { useShoppingCart } from "@/lib/store";
 import { getAllProducts } from "@/app/(actions)/product";
 
 const Page = async () => {
-  const { products } = useShoppingCart();
-
-  // const products = await getAllProducts();
+  const products = await getAllProducts();
 
   return (
     <div className="min-h-screen mx-12">

@@ -3,11 +3,10 @@
 import { products, type Product, users } from "@/lib/db/schema";
 import productjson from "../../../products.json";
 import { db } from "@/lib/db";
+import { eq } from "drizzle-orm";
 
 export async function generateProducts() {
   const allProducts: Product[] = [];
-
-  const product = productjson.products;
 
   // for (let i = 0; i < product.length; i++) {
   //   allProducts.push({
@@ -22,6 +21,7 @@ export async function generateProducts() {
   //   });
   // }
   // await db.insert(products).values(allProducts);
-  // await db.select().from(users).where(eq(users.id, 1));
+  // const prod = await db.select().from(users).where(eq(users.id, 1));
   const prod = await db.select().from(products);
+  console.log(prod);
 }
