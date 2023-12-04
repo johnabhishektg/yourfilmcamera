@@ -11,7 +11,7 @@ const Homepage = async () => {
     <div className="px-12">
       <Hero />
       <div className="flex justify-center items-center lg:justify-between">
-        <h1 className="font-semibold tracking-tight text-4xl text-center lg:text-left">
+        <h1 className="font-bold tracking-tight text-4xl text-center lg:text-left">
           Top Picks
         </h1>
         <Link

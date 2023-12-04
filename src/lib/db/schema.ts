@@ -10,6 +10,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/mysql-core";
+import { StoredFile } from "../types";
 
 export const users = mysqlTable("users", {
   id: serial("id").primaryKey(),
@@ -23,7 +24,7 @@ export const products = mysqlTable("products", {
   name: varchar("name", { length: 191 }).notNull(),
   description: text("description"),
   new: boolean("boolean"),
-  images: json("images").$type<null>().default(null),
+  images: json("images").$type<StoredFile[] | null>().default(null),
   category: mysqlEnum("category", ["cameras", "lens", "film rolls"])
     .notNull()
     .default("cameras"),
@@ -32,3 +33,16 @@ export const products = mysqlTable("products", {
 });
 
 export type Product = InferModel<typeof products>;
+
+export const carts = mysqlTable("carts", {
+  id: serial("id").primaryKey(),
+  paymentIntentId: varchar("paymentIntentId", { length: 191 }),
+  clientSecret: varchar("clientSecret", { length: 191 }),
+  items: json("items").$type<null>().default(null),
+  closed: boolean("closed").notNull().default(false),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").onUpdateNow(),
+});
+
+export type Cart = InferModel<typeof carts>;
+export type NewCart = InferModel<typeof carts>;

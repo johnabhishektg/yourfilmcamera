@@ -1,6 +1,6 @@
 "use server";
 
-import { products, type Product, users } from "@/lib/db/schema";
+import { products } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 
 type ProductItemsProps = {
@@ -16,10 +16,10 @@ type ProductItemsProps = {
 };
 
 export async function getAllProducts() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   // for (let i = 0; i < product.length; i++) {
   //   allProducts.push({
   //     id: product[i].id,
-  //     category: "cameras",
   //     images: null,
   //     name: product[i].name,
   //     new: product[i].new,
