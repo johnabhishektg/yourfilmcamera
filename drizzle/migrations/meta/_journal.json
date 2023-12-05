@@ -8,6 +8,13 @@
       "when": 1690901283837,
       "tag": "0000_thin_martin_li",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1701769720589,
+      "tag": "0001_wandering_firebird",
+      "breakpoints": true
     }
   ]
 }

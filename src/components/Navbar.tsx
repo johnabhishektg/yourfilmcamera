@@ -6,6 +6,7 @@ import React from "react";
 import CartButton from "./CartButton";
 import NavItems from "./NavItems";
 import { currentUser } from "@clerk/nextjs";
+import { getQuantityOfCart } from "@/app/(actions)/cart";
 
 export default async function Navbar() {
   const user = await currentUser();

@@ -16,7 +16,6 @@ type ProductItemsProps = {
 };
 
 export async function getAllProducts() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   // for (let i = 0; i < product.length; i++) {
   //   allProducts.push({
   //     id: product[i].id,
@@ -40,11 +39,9 @@ export async function getAllProducts() {
       new: products.new,
       description: products.description,
       price: products.price,
-      createdAt: products.createdAt,
     })
     .from(products);
 
   // const prod = await db.select().from(products);
   return prod;
-  // console.log(prod);
 }

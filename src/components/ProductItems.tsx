@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/Button";
 import { ToastAction } from "./ui/Toast";
+import { AddToCartButton } from "./AddToCartButton";
 
 type ProductItemsProps = {
   id: number;
@@ -50,7 +51,8 @@ export default function ProductItems(product: ProductItemsProps) {
         <h2 className="mt-1 font-medium text-primary">{product.name}</h2>
         <div className="mt-2 flex justify-between items-center content-center">
           <p className="font-bold text-2xl">${product.price}</p>
-          <Button onClick={(e) => increaseCartItems(e)}>Add to cart</Button>
+          <AddToCartButton id={product.id} />
+          {/* <Button onClick={(e) => increaseCartItems(e)}>Add to cart</Button> */}
         </div>
       </footer>
     </header>
