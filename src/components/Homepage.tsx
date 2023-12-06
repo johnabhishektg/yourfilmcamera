@@ -25,7 +25,7 @@ const Homepage = async () => {
         </Link>
       </div>
       <div className="py-6 flex flex-cols">
-        {/* <TopPick products={...products} /> */}
+        <TopPick products={products} {...products} />
       </div>
       <div className="my-4 flex justify-center">
         <Link href={"/products"}>
