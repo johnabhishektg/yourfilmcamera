@@ -9,12 +9,10 @@ import {
   SheetPrimitive,
 } from "./ui/Sheet";
 import { Button, buttonVariants } from "./ui/Button";
-import { useShoppingCart } from "@/lib/store";
 import React from "react";
 import CartItem from "./CartItem";
 import Link from "next/link";
 import { Product } from "@/lib/slices/createProductSlice";
-import { products } from "@/lib/db/schema";
 
 export default function CartButton({ cartLineItems, cartItems }: any) {
   // const { cart } = useShoppingCart();
