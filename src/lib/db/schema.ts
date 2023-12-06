@@ -10,7 +10,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/mysql-core";
-import { CartItem, StoredFile } from "../types";
+import { CartItem } from "../types";
 
 export const users = mysqlTable("users", {
   id: serial("id").primaryKey(),
@@ -24,7 +24,7 @@ export const products = mysqlTable("products", {
   name: varchar("name", { length: 191 }).notNull(),
   description: text("description"),
   new: boolean("boolean"),
-  images: json("images").$type<StoredFile[] | null>().default(null),
+  images: json("images").$type<null>().default(null),
   category: mysqlEnum("category", ["cameras", "lens", "film rolls"])
     .notNull()
     .default("cameras"),

@@ -6,10 +6,15 @@ import React from "react";
 import CartButton from "./CartButton";
 import NavItems from "./NavItems";
 import { currentUser } from "@clerk/nextjs";
-import { getQuantityOfCart } from "@/app/(actions)/cart";
+import { getCart, getCartItems } from "@/lib/fetchers/cart";
+import { cookies } from "next/headers";
 
 export default async function Navbar() {
   const user = await currentUser();
+  const cartLineItems = await getCart();
+
+  const cartId = cookies().get("cartId")?.value;
+  const cartItems = await getCartItems({ cartId: Number(cartId) });
 
   return (
     <nav className="w-full z-10 top-0 bg-white nav fixed flex justify-between align-center px-10 py-6 shadow-md">
@@ -26,7 +31,7 @@ export default async function Navbar() {
       </div>
 
       <div className="space-x-4 flex justify-center items-center">
-        <CartButton />
+        <CartButton cartLineItems={cartLineItems} cartItems={cartItems} />
         {user ? <UserButton afterSignOutUrl="/" /> : <UserAuthButton />}
       </div>
     </nav>

@@ -3,7 +3,6 @@
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/Button";
 import { ToastAction } from "./ui/Toast";
 import { AddToCartButton } from "./AddToCartButton";
 
@@ -15,7 +14,6 @@ type ProductItemsProps = {
   images: null;
   category: "cameras" | "lens" | "film rolls";
   price: string;
-  createdAt: Date | null;
   key: number;
 };
 

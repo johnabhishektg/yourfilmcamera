@@ -1,5 +1,3 @@
-"use client";
-
 import { ShoppingCart } from "lucide-react";
 import {
   Sheet,
@@ -15,18 +13,31 @@ import { useShoppingCart } from "@/lib/store";
 import React from "react";
 import CartItem from "./CartItem";
 import Link from "next/link";
+import { Product } from "@/lib/slices/createProductSlice";
+import { products } from "@/lib/db/schema";
 
-export default function CartButton() {
-  const { cart } = useShoppingCart();
+export default function CartButton({ cartLineItems, cartItems }: any) {
+  // const { cart } = useShoppingCart();
 
-  const calculateTotal = () => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
-  };
-
-  const cartQuantity = cart.reduce(
-    (quantity, item) => item.quantity! + quantity,
+  const itemCount = cartLineItems.reduce(
+    (total: number, item: { quantity: any }) => total + Number(item.quantity),
     0
   );
+
+  const cartTotal = cartLineItems.reduce(
+    (total: number, item: { quantity: number; price: any }) =>
+      total + item.quantity * Number(item.price),
+    0
+  );
+
+  // const calculateTotal = () => {
+  //   return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
+  // };
+
+  // const cartQuantity = cart.reduce(
+  //   (quantity, item) => item.quantity! + quantity,
+  //   0
+  // );
 
   return (
     <Sheet>
@@ -36,9 +47,9 @@ export default function CartButton() {
           className="relative cursor-pointer inline-flex items-center space-x-2 rounded-md px-2  h-auto lg:h-8  lg:px-3"
         >
           <ShoppingCart className=" w-4 h-4" />
-          {cart.length > 0 && (
+          {itemCount > 0 && (
             <span className="absolute bg-secondary rounded-full w-6 h-6 text-secondary-foreground flex items-center justify-center text-xs -top-2 -right-2">
-              {cartQuantity}
+              {itemCount}
             </span>
           )}
         </Button>
@@ -47,7 +58,7 @@ export default function CartButton() {
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
           <SheetDescription>
-            {cart.length === 0 && (
+            {itemCount === 0 && (
               <div>
                 <div className="col-span-9 mt-4 gap-2 rounded-md border-2 border-dashed border-gray-200 p-6 text-center flex items-center justify-center flex-col h-[200px] md:h-[150px]">
                   <h1 className="text-md font-medium text-primary tracking-tight">
@@ -61,20 +72,22 @@ export default function CartButton() {
                 </SheetPrimitive.Close>
               </div>
             )}
-            {cart.length > 0 && (
+            {itemCount > 0 && (
               <div>
-                {cart.map((item) => (
-                  <CartItem key={item.id} {...item} />
-                ))}
+                {cartItems.map(
+                  (item: React.JSX.IntrinsicAttributes & Product) => (
+                    <CartItem key={item.id} {...item} />
+                  )
+                )}
                 <hr className="bg-gray-500 border-t solid mt-6" />
                 <div className="flex justify-between mt-6 text-right font-semibold text-xl">
                   <p className="text-primary">Subtotal</p>
-                  <div className="text-primary">${calculateTotal()}</div>
+                  <div className="text-primary">${cartTotal}</div>
                 </div>
                 <div className="mt-6 space-y-2">
                   <Link
                     className={buttonVariants({ className: "w-full" })}
-                    href={"/checkout"}
+                    href={"/"}
                   >
                     Checkout
                   </Link>

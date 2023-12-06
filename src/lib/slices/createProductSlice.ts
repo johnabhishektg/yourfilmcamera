@@ -2,7 +2,9 @@ import { StateCreator } from "zustand";
 import productjson from "../../../products.json";
 
 export interface Product {
+  images: string;
   id: number;
+  productId: number;
   category: string;
   image: string;
   name: string;
