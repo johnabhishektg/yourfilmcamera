@@ -1,8 +1,6 @@
 import ProductItems from "./ProductItems";
 
 const TopPick = (products: any) => {
-  console.log(products);
-
   let topPickArray = [];
   for (let i = 0; i < 4; i++) {
     topPickArray.push({

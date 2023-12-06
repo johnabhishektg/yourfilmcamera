@@ -17,8 +17,6 @@ import Link from "next/link";
 import { Product } from "@/lib/slices/createProductSlice";
 
 export default function CartButton({ cartLineItems, cartItems }: any) {
-  // const { cart } = useShoppingCart();
-
   const itemCount = cartLineItems.reduce(
     (total: number, item: { quantity: any }) => total + Number(item.quantity),
     0
@@ -29,15 +27,6 @@ export default function CartButton({ cartLineItems, cartItems }: any) {
       total + item.quantity * Number(item.price),
     0
   );
-
-  // const calculateTotal = () => {
-  //   return cart.reduce((acc, item) => acc + item.price * item.quantity!, 0);
-  // };
-
-  // const cartQuantity = cart.reduce(
-  //   (quantity, item) => item.quantity! + quantity,
-  //   0
-  // );
 
   return (
     <Sheet>

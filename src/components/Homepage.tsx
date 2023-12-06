@@ -3,6 +3,7 @@ import Link from "next/link";
 import Hero from "./Hero";
 import TopPick from "./TopPick";
 import { Button, buttonVariants } from "./ui/Button";
+import { MoveRight } from "lucide-react";
 
 const Homepage = async () => {
   const products = await getAllProducts();
@@ -18,10 +19,11 @@ const Homepage = async () => {
           href={"/products"}
           className={buttonVariants({
             variant: "ghost",
-            className: "hidden lg:block",
+            className: "hidden  lg:flex",
           })}
         >
           Show More
+          <MoveRight className="ml-1 w-4 h-4" />
         </Link>
       </div>
       <div className="py-6 flex flex-cols">
