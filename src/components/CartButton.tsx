@@ -1,5 +1,3 @@
-"use client";
-
 import { ShoppingCart } from "lucide-react";
 import {
   Sheet,
@@ -8,7 +6,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-  SheetPrimitive,
 } from "./ui/Sheet";
 import { Button, buttonVariants } from "./ui/Button";
 import React from "react";
@@ -54,11 +51,11 @@ export default function CartButton({ cartLineItems, cartItems }: any) {
                     Your cart is empty
                   </h1>
                 </div>
-                <SheetPrimitive.Close className="w-full">
-                  <Button variant="default" className="mt-8 w-full text-sm">
-                    Start shopping
-                  </Button>
-                </SheetPrimitive.Close>
+                {/* <SheetPrimitive.Close className="w-full"> */}
+                <Button variant="default" className="mt-8 w-full text-sm">
+                  Start shopping
+                </Button>
+                {/* </SheetPrimitive.Close> */}
               </div>
             )}
             {itemCount > 0 && (
