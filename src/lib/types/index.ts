@@ -34,3 +34,12 @@ export const cartLineItemSchema = z.object({
 });
 
 export type CartItem = z.infer<typeof cartItemSchema>;
+export type CartLineItem = z.infer<typeof cartLineItemSchema>;
+
+export const deleteCartItemSchema = z.object({
+  productId: z.number(),
+});
+
+export const deleteCartItemsSchema = z.object({
+  productIds: z.array(z.number()),
+});

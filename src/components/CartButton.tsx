@@ -6,6 +6,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
+  SheetPrimitive,
+  SheetClose,
 } from "./ui/Sheet";
 import { Button, buttonVariants } from "./ui/Button";
 import React from "react";
@@ -51,11 +53,11 @@ export default function CartButton({ cartLineItems, cartItems }: any) {
                     Your cart is empty
                   </h1>
                 </div>
-                {/* <SheetPrimitive.Close className="w-full"> */}
-                <Button variant="default" className="mt-8 w-full text-sm">
-                  Start shopping
-                </Button>
-                {/* </SheetPrimitive.Close> */}
+                <SheetClose className="w-full">
+                  <Button variant="default" className="mt-8 w-full text-sm">
+                    Start shopping
+                  </Button>
+                </SheetClose>
               </div>
             )}
             {itemCount > 0 && (

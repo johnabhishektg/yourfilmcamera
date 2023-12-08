@@ -1,10 +1,8 @@
 "use client";
 
-import { useToast } from "@/components/ui/use-toast";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ToastAction } from "./ui/Toast";
 import { AddToCartButton } from "./AddToCartButton";
+import { Button } from "./ui/Button";
 
 type ProductItemsProps = {
   id: number;
@@ -19,21 +17,20 @@ type ProductItemsProps = {
 
 export default function ProductItems(product: ProductItemsProps) {
   const router = useRouter();
-  const { toast } = useToast();
 
-  function increaseCartItems(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    toast({
-      title: "Added to cart",
-      description: `${product.name} has been added to your cart`,
-      action: (
-        // link to go to the checkout page
-        <Link href="/">
-          <ToastAction altText="View">View</ToastAction>
-        </Link>
-      ),
-    });
-  }
+  // function increaseCartItems(e: React.MouseEvent<HTMLButtonElement>) {
+  //   e.preventDefault();
+  //   toast({
+  //     title: "Added to cart",
+  //     description: `${product.name} has been added to your cart`,
+  //     action: (
+  //       // link to go to the checkout page
+  //       <Link href="/">
+  //         <ToastAction altText="View">View</ToastAction>
+  //       </Link>
+  //     ),
+  //   });
+  // }
 
   return (
     <header className="border w-64 h-82 rounded shadow-md">
@@ -49,7 +46,7 @@ export default function ProductItems(product: ProductItemsProps) {
         <h2 className="mt-1 font-medium text-primary">{product.name}</h2>
         <div className="mt-2 flex justify-between items-center content-center">
           <p className="font-bold text-2xl">${product.price}</p>
-          <AddToCartButton id={product.id} />
+          <AddToCartButton id={product.id} name={product.name} />
           {/* <Button onClick={(e) => increaseCartItems(e)}>Add to cart</Button> */}
         </div>
       </footer>

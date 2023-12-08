@@ -19,7 +19,7 @@ const Homepage = async () => {
           href={"/products"}
           className={buttonVariants({
             variant: "ghost",
-            className: "hidden  lg:flex",
+            className: "hidden lg:flex",
           })}
         >
           Show More

@@ -1,8 +1,10 @@
 import { Button } from "./ui/Button";
 import { Trash } from "lucide-react";
 import EditButton from "./EditButton";
-import { useToast } from "./ui/use-toast";
 import { getAllProducts } from "@/app/(actions)/product";
+import { UpdateCart } from "./EditCartButton";
+import { getCart, getCartItems } from "@/lib/fetchers/cart";
+import { cookies } from "next/headers";
 
 type CartItemProps = {
   images: string;
@@ -18,24 +20,25 @@ type CartItemProps = {
 };
 
 export default async function CartItem(product: CartItemProps) {
-  // const { removeFromCart } = useShoppingCart();
   // const { toast } = useToast();
 
   const allProducts = await getAllProducts();
+  const cartId = cookies().get("cartId")?.value;
+  const cartItems = await getCartItems({ cartId: Number(cartId) });
+
+  console.log(cartItems);
+
   const { productId, quantity } = product;
 
   const item = allProducts.find((i) => i.id === productId);
 
   // function removeFromCartToast() {
-  //   removeFromCart(product.id);
   //   toast({
   //     title: "Removed from cart",
   //     description: `${product.name} has been removed from your cart`,
   //     variant: "destructive",
   //   });
   // }
-
-  // const item = productjson.products.find((i) => i.id === product.id);
 
   if (item == null) return null;
 
@@ -54,9 +57,9 @@ export default async function CartItem(product: CartItemProps) {
           <p className="text-primary">${item.price}</p>
         </div>
       </div>
+      {/* <EditButton product={product} productId={product.id} /> */}
       <div className="flex gap-2 justify-end ">
-        <EditButton product={product} productId={product.id} />
-
+        <UpdateCart productId={item.id} quantity={quantity} />
         <Button
           // onClick={() => removeFromCartToast()}
           variant="outline"
