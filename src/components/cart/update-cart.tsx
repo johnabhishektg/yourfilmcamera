@@ -7,6 +7,7 @@ import { Button } from "../ui/Button";
 import { CartItem } from "@/lib/types";
 import { Input } from "../ui/Input";
 import { toast } from "../ui/use-toast";
+import { catchError } from "@/lib/utils";
 
 interface UpdateCartProps {
   cartLineItem: CartItem;
@@ -32,7 +33,7 @@ export function UpdateCart(item: UpdateCartProps) {
                   quantity: Number(item.cartLineItem.quantity) - 1,
                 });
               } catch (err) {
-                throw err;
+                catchError(err);
               }
             });
           }}
@@ -55,7 +56,7 @@ export function UpdateCart(item: UpdateCartProps) {
                   quantity: Number(e.target.value),
                 });
               } catch (err) {
-                throw err;
+                catchError(err);
               }
             });
           }}
@@ -74,7 +75,7 @@ export function UpdateCart(item: UpdateCartProps) {
                   quantity: Number(item.cartLineItem.quantity) + 1,
                 });
               } catch (err) {
-                throw err;
+                catchError(err);
               }
             });
           }}
@@ -100,7 +101,7 @@ export function UpdateCart(item: UpdateCartProps) {
                 variant: "destructive",
               });
             } catch (err) {
-              throw err;
+              catchError(err);
             }
           });
         }}

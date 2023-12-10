@@ -6,6 +6,7 @@ import { Button } from "../ui/Button";
 import { toast } from "../ui/use-toast";
 import { deleteCartItem } from "@/app/(actions)/cart";
 import { CartItem } from "@/lib/types";
+import { catchError } from "@/lib/utils";
 
 interface DeleteItemProps {
   item: CartItem;
@@ -29,7 +30,7 @@ export function DeleteItem({ item }: DeleteItemProps) {
               variant: "destructive",
             });
           } catch (err) {
-            throw err;
+            catchError(err);
           }
         });
       }}
