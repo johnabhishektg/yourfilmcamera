@@ -1,10 +1,9 @@
-import { Button } from "./ui/Button";
-import { Trash } from "lucide-react";
 import EditButton from "./EditButton";
 import { getAllProducts } from "@/app/(actions)/product";
-import { UpdateCart } from "./EditCartButton";
-import { getCart, getCartItems } from "@/lib/fetchers/cart";
+import { getCartItems } from "@/lib/fetchers/cart";
 import { cookies } from "next/headers";
+import { CartItem } from "@/lib/types";
+import { DeleteItem } from "./delete-item";
 
 type CartItemProps = {
   images: string;
@@ -20,25 +19,14 @@ type CartItemProps = {
 };
 
 export default async function CartItem(product: CartItemProps) {
-  // const { toast } = useToast();
-
   const allProducts = await getAllProducts();
+
   const cartId = cookies().get("cartId")?.value;
   const cartItems = await getCartItems({ cartId: Number(cartId) });
-
-  console.log(cartItems);
 
   const { productId, quantity } = product;
 
   const item = allProducts.find((i) => i.id === productId);
-
-  // function removeFromCartToast() {
-  //   toast({
-  //     title: "Removed from cart",
-  //     description: `${product.name} has been removed from your cart`,
-  //     variant: "destructive",
-  //   });
-  // }
 
   if (item == null) return null;
 
@@ -57,16 +45,14 @@ export default async function CartItem(product: CartItemProps) {
           <p className="text-primary">${item.price}</p>
         </div>
       </div>
-      {/* <EditButton product={product} productId={product.id} /> */}
-      <div className="flex gap-2 justify-end ">
-        <UpdateCart productId={item.id} quantity={quantity} />
-        <Button
-          // onClick={() => removeFromCartToast()}
-          variant="outline"
-          className="p-3 h-8"
-        >
-          <Trash className="w-4 h-4" />
-        </Button>
+
+      <div>
+        {cartItems?.map((item: React.JSX.IntrinsicAttributes & any) => (
+          <div className="flex gap-2 justify-end ">
+            <EditButton cartItems={item} />
+            <DeleteItem item={item} />
+          </div>
+        ))}
       </div>
     </div>
   );

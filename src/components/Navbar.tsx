@@ -3,7 +3,7 @@ import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import UserAuthButton from "./UserAuthButton";
 import React from "react";
-import CartButton from "./CartButton";
+import CartButton from "./cart/CartButton";
 import NavItems from "./NavItems";
 import { currentUser } from "@clerk/nextjs";
 import { getCart, getCartItems } from "@/lib/fetchers/cart";

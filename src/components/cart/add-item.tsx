@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { Button } from "./ui/Button";
-import { toast } from "./ui/use-toast";
+import { Button } from "../ui/Button";
+import { toast } from "../ui/use-toast";
 import { Loader2 } from "lucide-react";
 import { addToCart } from "@/app/(actions)/cart";
 import Link from "next/link";
-import { ToastAction } from "./ui/Toast";
+import { ToastAction } from "../ui/Toast";
 
 export function AddToCartButton({ id, name }: any) {
   const [isPending, startTransition] = React.useTransition();

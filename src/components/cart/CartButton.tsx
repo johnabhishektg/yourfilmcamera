@@ -8,8 +8,8 @@ import {
   SheetDescription,
   SheetPrimitive,
   SheetClose,
-} from "./ui/Sheet";
-import { Button, buttonVariants } from "./ui/Button";
+} from "../ui/Sheet";
+import { Button, buttonVariants } from "../ui/Button";
 import React from "react";
 import CartItem from "./CartItem";
 import Link from "next/link";

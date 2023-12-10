@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AddToCartButton } from "./AddToCartButton";
-import { Button } from "./ui/Button";
+import { AddToCartButton } from "./cart/add-item";
 
 type ProductItemsProps = {
   id: number;
