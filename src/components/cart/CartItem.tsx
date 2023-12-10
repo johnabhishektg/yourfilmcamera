@@ -48,9 +48,9 @@ export default async function CartItem(product: CartItemProps) {
 
       <div>
         {cartItems?.map((item: React.JSX.IntrinsicAttributes & any) => (
-          <div className="flex gap-2 justify-end ">
-            <EditButton key={productId} cartItems={item} />
-            <DeleteItem key={productId} item={item} />
+          <div key={productId} className="flex gap-2 justify-end ">
+            <EditButton cartItems={item} />
+            <DeleteItem item={item} />
           </div>
         ))}
       </div>
