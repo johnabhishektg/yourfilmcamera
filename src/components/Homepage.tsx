@@ -4,6 +4,7 @@ import Hero from "./Hero";
 import TopPick from "./TopPick";
 import { Button, buttonVariants } from "./ui/Button";
 import { MoveRight } from "lucide-react";
+import Perks from "./Perks";
 
 const Homepage = async () => {
   const products = await getAllProducts();
@@ -11,6 +12,7 @@ const Homepage = async () => {
   return (
     <div className="px-12">
       <Hero />
+      <Perks />
       <div className="flex justify-center items-center lg:justify-between">
         <h1 className="font-bold tracking-tight text-4xl text-center lg:text-left">
           Top Picks

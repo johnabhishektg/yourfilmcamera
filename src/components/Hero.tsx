@@ -6,7 +6,7 @@ import { buttonVariants } from "./ui/Button";
 
 export default function Hero() {
   return (
-    <div className="h-screen">
+    <>
       <div className="text-center">
         <Image
           priority
@@ -14,7 +14,7 @@ export default function Hero() {
           src={hero}
           alt="hero-img"
         />
-        <h1 className="mt-8 antialiased  space-y-2 text-6xl font-bold text-primary lg:text-8xl">
+        <h1 className="mt-8 antialiased space-y-2 font-bold text-primary text-6xl  lg:text-8xl">
           Buy Your First <br className="hidden sm:block" /> Film Camera.
         </h1>
         <p className="text-xl leading-6 tracking-tighter text-gray-400 mt-4">
@@ -28,6 +28,6 @@ export default function Hero() {
           Shop now
         </Link>
       </div>
-    </div>
+    </>
   );
 }

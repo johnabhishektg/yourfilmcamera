@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 
 export default function Loading() {
   return (
-    <div className="h-screen">
+    <>
       <div>
         <div className="flex items-center h-full px-12">
           <Skeleton className="h-36 rounded w-full" />
@@ -17,7 +17,13 @@ export default function Loading() {
             </div>
           </div>
         </div>
+        <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-0 py-16 px-12 space-x-1.5">
+          <Skeleton className="h-[142px] w-[310px]" />
+          <Skeleton className="h-[142px] w-[310px]" />
+          <Skeleton className="h-[142px] w-[310px]" />
+          <Skeleton className="h-[142px] w-[310px]" />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
