@@ -7,13 +7,15 @@ import { Loader2 } from "lucide-react";
 import { addToCart } from "@/app/(actions)/cart";
 import Link from "next/link";
 import { ToastAction } from "../ui/Toast";
+import { cn } from "@/lib/utils";
 
-export function AddToCartButton({ id, name }: any) {
+export function AddToCartButton({ id, name, className }: any) {
   const [isPending, startTransition] = React.useTransition();
 
   const productId = id;
   return (
     <Button
+      className={cn(className)}
       onClick={() => {
         startTransition(async () => {
           try {

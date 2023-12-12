@@ -1,13 +1,9 @@
-"use client";
+// "use client";
 
-import productjson from "../../../../../products.json";
+import { getProductFromId } from "@/app/(actions)/product";
+import { AddToCartButton } from "@/components/cart/add-item";
 import { Aperture, RotateCw, Zap } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import Image from "next/image";
-import { useShoppingCart } from "@/lib/store";
-import Link from "next/link";
-import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/Toast";
 
 interface pageProps {
   params: {
@@ -15,32 +11,18 @@ interface pageProps {
   };
 }
 
-const Page = ({ params }: pageProps) => {
-  const { increaseCart, products } = useShoppingCart();
-  const { toast } = useToast();
-  const { productId } = params;
-  const cameraId = productjson.products.find((p) => p.id == productId);
-  const product = products.find((p) => p.id == productId);
+const Page = async ({ params }: pageProps) => {
+  const id = await getProductFromId(params);
 
-  function increaseCartItems() {
-    increaseCart(product!);
-    toast({
-      title: "Added to cart",
-      description: `${product?.name} has been added to your cart`,
-      action: (
-        <Link href="/">
-          <ToastAction altText="View">View</ToastAction>
-        </Link>
-      ),
-    });
-  }
+  const cameraId = id[0];
 
   return (
     <div className="min-h-screen mx-auto p-6">
       <div className="block gap-8 md:flex ">
         <Image
+          priority
           className="rounded object-cover h-72 w-full md:w-1/2 md:h-96"
-          src={"/" + cameraId?.image}
+          src={"/" + cameraId?.images}
           width={1080}
           height={720}
           alt=""
@@ -54,13 +36,11 @@ const Page = ({ params }: pageProps) => {
             ${cameraId?.price}
           </p>
           <div className="mt-6 ">
-            <Button
-              className="w-full lg:w-fit"
-              onClick={() => increaseCartItems()}
-              variant="default"
-            >
-              Add to Cart
-            </Button>
+            <AddToCartButton
+              id={cameraId.id}
+              name={cameraId.name}
+              className={`w-full lg:w-fit`}
+            />
           </div>
           <footer className="flex  items-center justify-center gap-8 text-center mt-12 lg:mt-20 ">
             <div className=" bg-secondary p-2 space-y-1 inline-block rounded">

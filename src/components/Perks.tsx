@@ -1,17 +1,11 @@
-import {
-  ArrowDownToLine,
-  CheckCircle,
-  DollarSign,
-  Leaf,
-  Truck,
-} from "lucide-react";
+import { CheckCircle, DollarSign, Truck, Zap } from "lucide-react";
 
 export default function Perks() {
   const perks = [
     {
       name: "Instant Delivery",
       description: "Get your camera delivered to your doorstep right away.",
-      Icon: ArrowDownToLine,
+      Icon: Zap,
     },
     {
       name: "Guaranteed Quality",
@@ -31,14 +25,14 @@ export default function Perks() {
   ];
 
   return (
-    <div className="py-16">
+    <div className="pt-20 pb-24">
       <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-0">
         {perks.map((perk) => (
           <div
             key={perk.name}
             className="border text-card-foreground shadow relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-transparent"
           >
-            <div className="flex flex-col space-y-1.5 p-4">
+            <div className="flex flex-col space-y-1.5 p-2">
               <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
                 <div className="grid h-11 w-11 place-items-center rounded-full border-2 text-slate-700">
                   {<perk.Icon className="w-4 h-4" />}
