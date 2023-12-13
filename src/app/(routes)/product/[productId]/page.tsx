@@ -1,5 +1,3 @@
-// "use client";
-
 import { getProductFromId } from "@/app/(actions)/product";
 import { AddToCartButton } from "@/components/cart/add-item";
 import { Aperture, RotateCw, Zap } from "lucide-react";
