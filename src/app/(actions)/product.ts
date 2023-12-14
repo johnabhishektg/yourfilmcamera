@@ -5,14 +5,13 @@ import { db } from "@/lib/db";
 import { eq } from "drizzle-orm";
 
 export async function getAllProducts() {
-  // await new Promise((resolve) => setTimeout(resolve, 10000));
-
   const prod = await db.select().from(products);
 
   return prod;
 }
 
 export async function getProductFromId(input: { productId?: number }) {
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   if (!input.productId || isNaN(input.productId)) return [];
 
   try {

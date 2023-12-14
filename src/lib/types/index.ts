@@ -43,3 +43,38 @@ export const deleteCartItemSchema = z.object({
 export const deleteCartItemsSchema = z.object({
   productIds: z.array(z.number()),
 });
+
+export const getProductsSchema = z.object({
+  categories: z.string().optional().nullable(),
+  sort: z.string().optional().nullable(),
+  active: z.string().optional().nullable(),
+});
+
+export const filterProductsSchema = z.object({
+  query: z.string(),
+});
+
+export const productSchema = z.object({
+  name: z.string().min(1, {
+    message: "Must be at least 1 character",
+  }),
+  description: z.string().optional(),
+  category: z
+    .enum(products.category.enumValues, {
+      required_error: "Must be a valid category",
+    })
+    .default(products.category.enumValues[0]),
+  price: z.string().regex(/^\d+(\.\d{1,2})?$/, {
+    message: "Must be a valid price",
+  }),
+  images: z
+    .unknown()
+    .refine((val) => {
+      if (!Array.isArray(val)) return false;
+      if (val.some((file) => !(file instanceof File))) return false;
+      return true;
+    }, "Must be an array of File")
+    .optional()
+    .nullable()
+    .default(null),
+});
