@@ -6,14 +6,13 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-  SheetPrimitive,
   SheetClose,
 } from "../ui/Sheet";
 import { Button, buttonVariants } from "../ui/Button";
 import React from "react";
 import CartItem from "./CartItem";
 import Link from "next/link";
-import { Product } from "@/lib/slices/createProductSlice";
+import { Product } from "@/lib/types";
 
 export default function CartButton({ cartLineItems, cartItems }: any) {
   const itemCount = cartLineItems.reduce(

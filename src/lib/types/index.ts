@@ -7,6 +7,19 @@ export interface StoredFile {
   url: string;
 }
 
+export interface Product {
+  id: number;
+  productId: number;
+  category: string;
+  images: string;
+  image: string;
+  name: string;
+  new: boolean;
+  description: string;
+  price: number;
+  quantity?: number;
+}
+
 // CART
 
 export const cartItemSchema = z.object({
