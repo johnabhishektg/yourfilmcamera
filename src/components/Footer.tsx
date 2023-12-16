@@ -1,7 +1,8 @@
-import { Aperture, Github, Linkedin, Sun } from "lucide-react";
-import { Input } from "./ui/Input";
-import { Button } from "./ui/Button";
+import { cn } from "@/lib/utils";
+import { Aperture, Sun } from "lucide-react";
 import { Icons } from "./Icons";
+import { Button, buttonVariants } from "./ui/Button";
+import { Input } from "./ui/Input";
 
 const Footer = () => {
   return (
@@ -58,14 +59,13 @@ const Footer = () => {
           </div>
           <section id="newsletter" className="space-y-3">
             <h4 className="text-base font-semibold">Subscribe to our blog</h4>
-            <label
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
-              htmlFor=""
-            >
-              <div className="flex flex-row relative space-y-0">
+            <label htmlFor="">
+              <div className="flex relative space-y-0">
                 <Input placeholder="yfc@gmail.com" />
-                <Button className="absolute px-2 my-2 top-0 right-0 ">
-                  <Icons.sendhorizontal className="h-3 w-3" />
+                <Button className="absolute right-[3.5px] top-[4px] h-8 px-2.5 py-0.5">
+                  <Icons.sendhorizontal
+                    className={cn(buttonVariants({ className: "h-9 w-9" }))}
+                  />
                 </Button>
               </div>
             </label>
@@ -76,16 +76,32 @@ const Footer = () => {
           <div className="text-sm text-muted-foreground">
             Built by{" "}
             <a target="_blank" href="https://github.com/johnabhishektg">
-              <span className="font-medium hover:underline"> johntg </span>
+              <span className="font-semibold transition-colors hover:text-foreground">
+                johntg{" "}
+              </span>
             </a>
           </div>
 
           <div className="font-light text-sm text-right">
-            <div className="flex justify-end mt-2">
+            <div className="flex items-center justify-end">
               <a target="_blank" href="https://github.com/johnabhishektg">
-                <Github className="cursor-pointer w-4 mr-2" />
+                <Icons.gitHub
+                  className={cn(
+                    buttonVariants({
+                      variant: "ghost",
+                      className: "cursor-pointer transition-colors h-9 w-12",
+                    })
+                  )}
+                />
               </a>
-              <Sun className="cursor-pointer w-4 mr-2" />
+              <Sun
+                className={cn(
+                  buttonVariants({
+                    variant: "ghost",
+                    className: "cursor-pointer transition-colors h-9 w-12",
+                  })
+                )}
+              />
             </div>
           </div>
         </section>
