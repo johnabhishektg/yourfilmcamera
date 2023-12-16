@@ -11,7 +11,7 @@ export async function getAllProducts() {
 }
 
 export async function getProductFromId(input: { productId?: number }) {
-  await new Promise((resolve) => setTimeout(resolve, 10000));
+  // await new Promise((resolve) => setTimeout(resolve, 10000));
   if (!input.productId || isNaN(input.productId)) return [];
 
   try {
