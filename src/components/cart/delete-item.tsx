@@ -5,11 +5,11 @@ import { Trash } from "lucide-react";
 import { Button } from "../ui/Button";
 import { toast } from "../ui/use-toast";
 import { deleteCartItem } from "@/app/(actions)/cart";
-import { CartItem } from "@/lib/types";
 import { catchError } from "@/lib/utils";
+import { CartItem } from "@/lib/types";
 
 interface DeleteItemProps {
-  item: CartItem;
+  item: any;
 }
 
 export function DeleteItem({ item }: DeleteItemProps) {

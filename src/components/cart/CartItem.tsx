@@ -1,6 +1,6 @@
 import EditButton from "./EditButton";
 import { getAllProducts } from "@/app/(actions)/product";
-import { getCartItems } from "@/lib/fetchers/cart";
+import { getCart, getCartItems } from "@/lib/fetchers/cart";
 import { cookies } from "next/headers";
 import { CartItem } from "@/lib/types";
 import { DeleteItem } from "./delete-item";
@@ -20,9 +20,6 @@ type CartItemProps = {
 
 export default async function CartItem(product: CartItemProps) {
   const allProducts = await getAllProducts();
-
-  const cartId = cookies().get("cartId")?.value;
-  const cartItems = await getCartItems({ cartId: Number(cartId) });
 
   const { productId, quantity } = product;
 
@@ -47,12 +44,10 @@ export default async function CartItem(product: CartItemProps) {
       </div>
 
       <div>
-        {cartItems?.map((item: React.JSX.IntrinsicAttributes & any) => (
-          <div key={productId} className="flex gap-2 justify-end ">
-            <EditButton cartItems={item} />
-            <DeleteItem item={item} />
-          </div>
-        ))}
+        <div className="flex gap-2 justify-end ">
+          <EditButton cartItems={product} />
+          <DeleteItem item={product} />
+        </div>
       </div>
     </div>
   );
