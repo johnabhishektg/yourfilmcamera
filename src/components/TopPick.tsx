@@ -16,7 +16,7 @@ const TopPick = (products: any) => {
   }
 
   return (
-    <div className="flex flex-wrap gap-8 justify-center lg:gap-16 sm:mt-2">
+    <div className="flex flex-wrap justify-center gap-8 w-full md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 md:gap-16 ">
       {topPickArray?.map((product) => (
         <ProductItems key={product.id} {...product} />
       ))}

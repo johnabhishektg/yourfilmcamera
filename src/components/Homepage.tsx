@@ -10,7 +10,7 @@ const Homepage = async () => {
   const products = await getAllProducts();
 
   return (
-    <div className="px-12">
+    <div className="px-12 sm:px-48">
       <Hero />
       <Perks />
       <div className="flex justify-center items-center lg:justify-between">
@@ -28,7 +28,7 @@ const Homepage = async () => {
           <MoveRight className="ml-1 w-4 h-4" />
         </Link>
       </div>
-      <div className="py-6 flex flex-cols">
+      <div className="py-6">
         <TopPick products={products} {...products} />
       </div>
       <div className="my-4 flex justify-center">
