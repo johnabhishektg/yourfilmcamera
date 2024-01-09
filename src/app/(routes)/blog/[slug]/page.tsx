@@ -8,11 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { cn, formatDate } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const generateStaticParams = async () =>
+  // eslint-disable-next-line @typescript-eslint/require-await
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 
 export const generateMetadata = ({ params }: any) => {
+  // eslint-disable-next-line @typescript-eslint/require-await
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
   return { title: post!.title };
 };
