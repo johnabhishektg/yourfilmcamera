@@ -11,8 +11,11 @@ const Footer = () => {
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <header className="flex space-x-1">
             <Aperture />
-            <span className="block font-bold cursor-pointer sm:inline-block">
+            <span className="hidden font-bold cursor-pointer sm:inline-block">
               YourFilmCamera
+            </span>
+            <span className="text-sm text-muted-foreground sm:hidden">
+              © 2024
             </span>
           </header>
           <section className="grid flex-1 grid-cols-1 gap-10 xxs:grid-cols-2 sm:grid-cols-3">

@@ -19,3 +19,16 @@ export function catchError(err: unknown) {
     return toast("Something went wrong, please try again later.");
   }
 }
+
+export function formatDate(
+  date: Date | string | number,
+  options: Intl.DateTimeFormatOptions = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }
+) {
+  return new Intl.DateTimeFormat("en-US", {
+    ...options,
+  }).format(new Date(date));
+}

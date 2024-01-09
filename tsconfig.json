@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -20,7 +21,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
@@ -29,6 +31,7 @@
     "**/*.tsx",
     "**/.tsx",
     ".next/types/**/*.ts",
+    ".contentlayer/generated",
     ".next/types/app/(routes)/product/[productId]/page.tsx"
   ],
   "exclude": ["node_modules"]

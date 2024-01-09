@@ -1,8 +1,11 @@
+const { withContentlayer } = require("next-contentlayer");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     serverActions: true,
+    appDir: true,
   },
 };
 
-module.exports = nextConfig;
+module.exports = withContentlayer(nextConfig);
