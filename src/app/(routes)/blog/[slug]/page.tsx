@@ -1,4 +1,5 @@
-import { format } from "date-fns";
+"use client";
+
 import { allPosts } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
@@ -7,6 +8,8 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { cn, formatDate } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
+import { Avatar } from "@/components/ui/Avatar";
+import { Mdx } from "@/app/mdx/mdx-components";
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
@@ -42,39 +45,60 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
           {post.date && (
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           )}
-          {post.date ? <div>•</div> : null}
         </div>
         <h1 className="inline-block text-4xl font-bold leading-tight lg:text-5xl">
           {post.title}
         </h1>
+        <div className="flex items-center space-x-4 pt-4">
+          <Link
+            // href={`https://twitter.com/${author.twitter}`}
+            href={`https://www.instagram.com/cinemahighway101/`}
+            className="flex items-center space-x-2 text-sm"
+          >
+            <Avatar className="rounded-full bg-white" />
+            {/* <img width={40} height={40} className="rounded-full bg-white" /> */}
+            <div className="flex-1 text-left leading-tight">
+              <p className="font-medium">{post.author}</p>
+              <p className="text-[12px] text-muted-foreground">
+                @cinemahighway
+              </p>
+            </div>
+          </Link>
+        </div>
       </div>
 
-      <div
-        className={cn(
-          "group relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg"
-        )}
-      >
-        <div className="flex flex-col justify-between space-y-4">
-          <div className="space-y-2 [&>h3]:!mt-0 [&>h4]:!mt-0 [&>p]:text-muted-foreground">
-            <Content />
-          </div>
-        </div>
-        <Link href={"/"} className="absolute inset-0">
-          <span className="sr-only">View</span>
+      <Separator className="my-4" />
+      {/* {post.image && (
+          <AspectRatio ratio={16 / 9}>
+          <Image
+          src={post.image}
+            alt={post.title}
+            fill
+            className="rounded-md border bg-muted"
+            priority
+          />
+        </AspectRatio>
+      )} */}
+      <div>
+        <Mdx code={post!.body.code} />
+      </div>
+
+      {/* <MdxPager currentItem={post} allItems={allPosts} /> */}
+      <div className="flex justify-center items-center">
+        <Link
+          href="/blog"
+          className={cn(
+            buttonVariants({
+              variant: "ghost",
+              className: "mx-auto mt-4 w-fit",
+            })
+          )}
+        >
+          <ChevronLeftIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+          See all posts
+          <span className="sr-only">See all posts</span>
         </Link>
       </div>
-      <Separator className="my-4" />
-      {/* <MdxPager currentItem={post} allItems={allPosts} /> */}
-      <Link
-        href="/blog"
-        className={cn(
-          buttonVariants({ variant: "ghost", className: "mx-auto mt-4 w-fit" })
-        )}
-      >
-        <ChevronLeftIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-        See all posts
-        <span className="sr-only">See all posts</span>
-      </Link>
     </div>
   );
 };
