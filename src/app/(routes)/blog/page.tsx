@@ -43,7 +43,7 @@ export default function Home() {
     <div className="container md:pb-10">
       <PageHeader>
         <PageHeaderHeading>Blog</PageHeaderHeading>
-        <p className="text-muted-foreground font-medium ">
+        <p className="text-muted-foreground text-sm">
           Explore the latest news and updates from the community
         </p>
       </PageHeader>

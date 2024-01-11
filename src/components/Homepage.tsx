@@ -60,14 +60,16 @@ const Homepage = async () => {
         <div className="py-8">
           <div className="flex flex-wrap justify-center gap-8 w-full md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 md:gap-16 ">
             <Card className="w-full">
-              <CardHeader>
-                <img
-                  src="./images/film-review.jpg"
-                  className="relative w-full rounded-t h-32 object-cover cursor-pointer"
-                  width={120}
-                  height={45}
-                />
-              </CardHeader>
+              <Link href={"/blog"}>
+                <CardHeader>
+                  <img
+                    src="./images/blog/film-review.jpg"
+                    className="relative w-full rounded-t h-32 object-cover cursor-pointer"
+                    width={120}
+                    height={45}
+                  />
+                </CardHeader>
+              </Link>
               <CardFooter className="p-3">
                 <p className="p-1 text-lg font-bold text-primary">
                   Film Reviews
@@ -76,14 +78,16 @@ const Homepage = async () => {
             </Card>
 
             <Card className="w-full">
-              <CardHeader>
-                <img
-                  src="./images/poems.jpg"
-                  className="relative w-full rounded-t h-32 object-cover cursor-pointer"
-                  width={120}
-                  height={45}
-                />
-              </CardHeader>
+              <Link href={"/blog"}>
+                <CardHeader>
+                  <img
+                    src="./images/blog/poems.jpg"
+                    className="relative w-full rounded-t h-32 object-cover cursor-pointer"
+                    width={120}
+                    height={45}
+                  />
+                </CardHeader>
+              </Link>
               <CardFooter className="p-3">
                 <p className="p-1 text-lg font-bold text-primary">Poems</p>
               </CardFooter>

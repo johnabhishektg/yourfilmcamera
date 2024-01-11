@@ -1,26 +1,29 @@
-import { allPosts } from "contentlayer/generated";
-import { getMDXComponent } from "next-contentlayer/hooks";
-import { notFound } from "next/navigation";
-import { ChevronLeftIcon } from "lucide-react";
-import Link from "next/link";
+import { Mdx } from "@/app/mdx/mdx-components";
+import { Avatar } from "@/components/ui/Avatar";
+import { buttonVariants } from "@/components/ui/Button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { cn, formatDate } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/Button";
-import { Avatar } from "@/components/ui/Avatar";
-import { Mdx } from "@/app/mdx/mdx-components";
+import { allPosts } from "contentlayer/generated";
+import { ChevronLeftIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 
 export const generateMetadata = ({ params }: any) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
-  return { title: post!.title };
+  return {
+    title: post!.title,
+    description: post!.description,
+    author: post!.author,
+  };
 };
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
-
-  const Content = getMDXComponent(post!.body.code);
 
   if (!post) {
     notFound();
@@ -49,8 +52,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         </h1>
         <div className="flex items-center space-x-4 pt-4">
           <Link
-            // href={`https://twitter.com/${author.twitter}`}
-            href={`https://www.instagram.com/cinemahighway101/`}
+            href={`https://www.instagram.com/${post.instagram}/`}
             className="flex items-center space-x-2 text-sm"
           >
             <Avatar className="rounded-full bg-white" />
@@ -58,7 +60,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
             <div className="flex-1 text-left leading-tight">
               <p className="font-medium">{post.author}</p>
               <p className="text-[12px] text-muted-foreground">
-                @cinemahighway
+                @{post.instagram}
               </p>
             </div>
           </Link>
@@ -66,17 +68,17 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
       </div>
 
       <Separator className="my-4" />
-      {/* {post.image && (
-          <AspectRatio ratio={16 / 9}>
+      {post.image && (
+        <AspectRatio ratio={16 / 9}>
           <Image
-          src={post.image}
-            alt={post.title}
-            fill
-            className="rounded-md border bg-muted"
             priority
+            fill
+            src={post.image}
+            alt={post.title}
+            className="rounded-md border bg-muted"
           />
         </AspectRatio>
-      )} */}
+      )}
       <div>
         <Mdx code={post!.body.code} />
       </div>

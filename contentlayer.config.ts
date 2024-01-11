@@ -19,6 +19,10 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    instagram: {
+      type: "string",
+      required: true,
+    },
   },
   computedFields: {
     url: {
@@ -53,5 +57,5 @@ export const Author = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./src/content/posts",
-  documentTypes: [Post],
+  documentTypes: [Post, Author],
 });
