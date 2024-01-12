@@ -85,7 +85,7 @@ const NavItems: FC<NavItemsProps> = ({}) => {
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               {allPosts.map((post) => (
-                <ListItem href={post.url} title={post.title}>
+                <ListItem key={post._id} href={post.url} title={post.title}>
                   {post.description}
                 </ListItem>
               ))}
