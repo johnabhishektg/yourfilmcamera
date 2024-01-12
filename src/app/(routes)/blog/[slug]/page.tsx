@@ -75,7 +75,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
             fill
             src={post.image}
             alt={post.title}
-            className="rounded-md border bg-muted"
+            className="rounded-md border bg-muted object-cover"
           />
         </AspectRatio>
       )}

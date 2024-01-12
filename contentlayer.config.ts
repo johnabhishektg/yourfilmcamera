@@ -15,6 +15,10 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    genre: {
+      type: "string",
+      required: true,
+    },
     author: {
       type: "string",
       required: true,
@@ -57,5 +61,5 @@ export const Author = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./src/content/posts",
-  documentTypes: [Post, Author],
+  documentTypes: [Post],
 });

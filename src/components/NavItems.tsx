@@ -12,6 +12,7 @@ import {
 import React from "react";
 import { Aperture } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { allPosts } from "contentlayer/generated";
 
 interface NavItemsProps {}
 
@@ -74,6 +75,29 @@ const NavItems: FC<NavItemsProps> = ({}) => {
               <ListItem href="/products" title="Film Rolls">
                 High quality pictures
               </ListItem>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* BLOGS */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+              {allPosts.map((post) => (
+                <ListItem href={post.url} title={post.title}>
+                  {post.description}
+                </ListItem>
+              ))}
+              {/* <ListItem href="/blog/phantasmagoria" title={post.title}>
+                {post.description}
+              </ListItem>
+              <ListItem href="/blog/the-meet" title="Lens">
+                The Meet
+              </ListItem>
+              <ListItem href="/products" title="Film Rolls">
+                High quality pictures
+              </ListItem> */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

@@ -1,36 +1,39 @@
-import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
-import React from "react";
-import { Separator } from "@/components/ui/separator";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Separator } from "@/components/ui/separator";
+import { Post, allPosts } from "contentlayer/generated";
+import { compareDesc, format, parseISO } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 
 function PostCard(post: Post) {
   return (
-    <Link
-      href={post.url}
-      className=" text-blue-700 hover:text-blue-900"
-      legacyBehavior
-    >
-      <Card className="p-6 cursor-pointer">
-        <CardHeader>
-          <CardTitle>{post.title}</CardTitle>
-          <time
-            dateTime={post.date}
-            className="block mb-2 text-xs text-gray-600"
-          >
-            {format(parseISO(post.date), "LLLL d, yyyy")}
-          </time>
-          <CardDescription>{post.description}</CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
+    <div className="">
+      <Link
+        href={post.url}
+        className=" text-blue-700 hover:text-blue-900"
+        legacyBehavior
+      >
+        <AspectRatio ratio={16 / 9}>
+          <Image
+            priority
+            fill
+            src={post.image}
+            alt={post.title}
+            className="rounded-md cursor-pointer border object-cover"
+          />
+        </AspectRatio>
+      </Link>
+      <>
+        <h3 className="mt-2 text-2xl font-semibold leading-none tracking-tight">
+          {post.title}
+        </h3>
+        <time dateTime={post.date} className="block my-1 text-xs ">
+          {format(parseISO(post.date), "LLLL d, yyyy")}
+        </time>
+        <p className="text-sm text-muted-foreground">{post.description}</p>
+      </>
+    </div>
   );
 }
 
@@ -38,6 +41,9 @@ export default function Home() {
   const posts = allPosts.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
+
+  const poems = allPosts.filter((post) => post.genre == "Poem");
+  const films = allPosts.filter((post) => post.genre == "Film");
 
   return (
     <div className="container md:pb-10">
@@ -48,10 +54,16 @@ export default function Home() {
         </p>
       </PageHeader>
       <Separator className="my-6" />
+
+      <PageHeaderHeading className="mb-2">Poems</PageHeaderHeading>
       <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {posts.map((post, idx) => (
+        {poems.map((post, idx) => (
           <PostCard key={idx} {...post} />
         ))}
+      </section>
+      <PageHeaderHeading className="mt-8 mb-2">Film Reviews</PageHeaderHeading>
+      <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {films && films.map((post, idx) => <PostCard key={idx} {...post} />)}
       </section>
     </div>
   );

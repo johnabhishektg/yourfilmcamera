@@ -6,6 +6,15 @@ const nextConfig = {
     serverActions: true,
     appDir: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+      },
+    ],
+    unoptimized: true,
+  },
 };
 
 module.exports = withContentlayer(nextConfig);
