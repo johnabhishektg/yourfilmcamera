@@ -89,15 +89,6 @@ const NavItems: FC<NavItemsProps> = ({}) => {
                   {post.description}
                 </ListItem>
               ))}
-              {/* <ListItem href="/blog/phantasmagoria" title={post.title}>
-                {post.description}
-              </ListItem>
-              <ListItem href="/blog/the-meet" title="Lens">
-                The Meet
-              </ListItem>
-              <ListItem href="/products" title="Film Rolls">
-                High quality pictures
-              </ListItem> */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

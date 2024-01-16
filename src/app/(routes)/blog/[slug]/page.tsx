@@ -1,29 +1,43 @@
 import { Mdx } from "@/app/mdx/mdx-components";
-import { Avatar } from "@/components/ui/Avatar";
+import { Avatar, AvatarImage } from "@/components/ui/Avatar";
 import { buttonVariants } from "@/components/ui/Button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { cn, formatDate } from "@/lib/utils";
-import { allPosts } from "contentlayer/generated";
+import { allAuthors, allPosts } from "contentlayer/generated";
 import { ChevronLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+  allPosts.map((post) => ({
+    slug: post._raw.flattenedPath.split("/").slice(1).join("/"),
+  }));
 
 export const generateMetadata = ({ params }: any) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+  const post = allPosts.find(
+    (post) =>
+      post._raw.flattenedPath.split("/").slice(1).join("/") === params.slug
+  );
   return {
     title: post!.title,
     description: post!.description,
-    author: post!.author,
+    authors: post!.author.map((author) => ({
+      name: author,
+    })),
   };
 };
 
-const PostLayout = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+const PostLayout = ({ params }: any) => {
+  const post = allPosts.find(
+    (post) =>
+      post._raw.flattenedPath.split("/").slice(1).join("/") === params.slug
+  );
+
+  // const author = post!.author.map((author) =>
+  //   allAuthors.find((slug) => slug._id == `authors/${author}.mdx`)
+  // );
 
   if (!post) {
     notFound();
@@ -50,17 +64,43 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         <h1 className="inline-block text-4xl font-bold leading-tight lg:text-5xl">
           {post.title}
         </h1>
-        <div className="flex items-center space-x-4 pt-4">
+
+        <div className="mt-4 flex space-x-4">
+          {/* {author.map((author) =>
+            author ? (
+              <Link
+                href={`https://www.instagram.com/${author.instagram}`}
+                className="flex items-center space-x-2 text-sm"
+              >
+                <Avatar className="rounded-full bg-white">
+                  <AvatarImage
+                    src={author.avatar}
+                    alt={`@${author.instagram}`}
+                  />
+                </Avatar>
+                <div className="flex-1 text-left leading-tight">
+                  <p className="font-medium">{author.title}</p>
+                  <p className="text-[12px] text-muted-foreground">
+                    @{author.instagram}
+                  </p>
+                </div>
+              </Link>
+            ) : null
+          )} */}
           <Link
-            href={`https://www.instagram.com/${post.instagram}/`}
+            href={`https://www.instagram.com/cinemahighway101`}
             className="flex items-center space-x-2 text-sm"
           >
-            <Avatar className="rounded-full bg-white" />
-            {/* <img width={40} height={40} className="rounded-full bg-white" /> */}
+            <Avatar className="rounded-full bg-white">
+              <AvatarImage
+                src="https://i.pinimg.com/280x280_RS/b7/42/8b/b7428ba2a7647382f32daef50e7c2859.jpg"
+                alt={`@`}
+              />
+            </Avatar>
             <div className="flex-1 text-left leading-tight">
-              <p className="font-medium">{post.author}</p>
+              <p className="font-medium">Shakti Iyer</p>
               <p className="text-[12px] text-muted-foreground">
-                @{post.instagram}
+                @cinemahighway101
               </p>
             </div>
           </Link>

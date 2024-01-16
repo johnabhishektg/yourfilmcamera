@@ -42,9 +42,6 @@ export default function Home() {
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
-  const poems = allPosts.filter((post) => post.genre == "Poem");
-  const films = allPosts.filter((post) => post.genre == "Film");
-
   return (
     <div className="container md:pb-10">
       <PageHeader>
@@ -55,15 +52,10 @@ export default function Home() {
       </PageHeader>
       <Separator className="my-6" />
 
-      <PageHeaderHeading className="mb-2">Poems</PageHeaderHeading>
       <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {poems.map((post, idx) => (
+        {posts.map((post, idx) => (
           <PostCard key={idx} {...post} />
         ))}
-      </section>
-      <PageHeaderHeading className="mt-8 mb-2">Film Reviews</PageHeaderHeading>
-      <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {films && films.map((post, idx) => <PostCard key={idx} {...post} />)}
       </section>
     </div>
   );

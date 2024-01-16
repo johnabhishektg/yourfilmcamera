@@ -2,7 +2,7 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `posts/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
@@ -15,30 +15,55 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    genre: {
-      type: "string",
-      required: true,
-    },
     author: {
-      type: "string",
-      required: true,
-    },
-    instagram: {
-      type: "string",
+      type: "list",
+      of: { type: "string" },
       required: true,
     },
   },
   computedFields: {
     url: {
       type: "string",
-      resolve: (post) => `/blog/${post._raw.flattenedPath}`,
+      resolve: (post) =>
+        `/blog/${post._raw.flattenedPath.split("/").slice(1).join("/")}`,
+    },
+  },
+}));
+
+export const Review = defineDocumentType(() => ({
+  name: "Review",
+  filePathPattern: `reviews/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+    },
+    date: {
+      type: "date",
+      required: true,
+    },
+    author: {
+      type: "list",
+      of: { type: "string" },
+      required: true,
+    },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (post) =>
+        `/blog/${post._raw.flattenedPath.split("/").slice(1).join("/")}`,
     },
   },
 }));
 
 export const Author = defineDocumentType(() => ({
   name: "Author",
-  filePathPattern: `author/**/*.mdx`,
+  filePathPattern: `authors/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -60,6 +85,6 @@ export const Author = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "./src/content/posts",
-  documentTypes: [Post],
+  contentDirPath: "./src/content",
+  documentTypes: [Post, Author, Review],
 });
