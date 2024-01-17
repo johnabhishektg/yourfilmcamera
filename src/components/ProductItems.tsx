@@ -18,7 +18,7 @@ export default function ProductItems(product: ProductItemsProps) {
   const router = useRouter();
 
   return (
-    <header className="border w-64 h-82 rounded shadow-md">
+    <header className="border w-64 h-82 rounded shadow-md dark:shadow-slate-900">
       <img
         className="relative w-full rounded-t h-40 object-cover cursor-pointer"
         src={product.images!}

@@ -3,6 +3,7 @@ import { Aperture, Sun } from "lucide-react";
 import { Icons } from "./Icons";
 import { Button, buttonVariants } from "./ui/Button";
 import { Input } from "./ui/Input";
+import ThemeToggle from "./ThemeToggle";
 
 const Footer = () => {
   return (
@@ -124,14 +125,7 @@ const Footer = () => {
                   )}
                 />
               </a>
-              <Sun
-                className={cn(
-                  buttonVariants({
-                    variant: "ghost",
-                    className: "cursor-pointer transition-colors h-9 w-12",
-                  })
-                )}
-              />
+              <ThemeToggle />
             </div>
           </div>
         </section>

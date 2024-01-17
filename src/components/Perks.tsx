@@ -34,8 +34,10 @@ export default function Perks() {
           >
             <div className="flex flex-col space-y-1.5 p-2">
               <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
-                <div className="grid h-11 w-11 place-items-center rounded-full border-2 text-slate-700">
-                  {<perk.Icon className="w-4 h-4" />}
+                <div className="grid h-11 w-11 place-items-center rounded-full border-2 text-secondary">
+                  {
+                    <perk.Icon className="text-slate-900 w-4 h-4 dark:text-primary" />
+                  }
                 </div>
                 <div className="p-4 flex flex-col items-center space-y-1.5">
                   <h3 className="font-semibold leading-tight tracking-tight capitalize">

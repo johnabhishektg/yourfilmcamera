@@ -10,14 +10,14 @@ export default function Hero() {
       <div className="text-center">
         <Image
           priority
-          className="animate-fade-in w-full h-36 object-cover rounded"
+          className="animate-fade-in w-full h-36 object-cover rounded dark:border"
           src={hero}
           alt="hero-img"
         />
         <h1 className="mt-8 antialiased space-y-2 font-bold text-primary text-6xl  lg:text-8xl">
           Buy Your First <br className="hidden sm:block" /> Film Camera.
         </h1>
-        <p className="text-xl leading-6 tracking-tighter text-gray-400 mt-4">
+        <p className="text-xl leading-6 tracking-tighter text-muted-foreground mt-4">
           Enabling you to express from a different perspective
         </p>
 

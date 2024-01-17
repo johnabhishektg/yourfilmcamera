@@ -10,16 +10,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export const generateStaticParams = async () =>
-  allPosts.map((post) => ({
-    slug: post._raw.flattenedPath.split("/").slice(1).join("/"),
-  }));
+interface PostPageProps {
+  params: {
+    slug: string[];
+  };
+}
 
-export const generateMetadata = ({ params }: any) => {
+// eslint-disable-next-line @typescript-eslint/require-await
+async function getPostFromParams(params: PostPageProps["params"]) {
+  const slug = params?.slug?.join("/");
   const post = allPosts.find(
-    (post) =>
-      post._raw.flattenedPath.split("/").slice(1).join("/") === params.slug
+    (post) => post._raw.flattenedPath.split("/").slice(1).join("/") === slug
   );
+
+  if (!post) {
+    null;
+  }
+
+  return post;
+}
+
+export async function generateStaticParams(): Promise<
+  PostPageProps["params"][]
+> {
+  return allPosts.map((post) => ({
+    slug: post._raw.flattenedPath.split("/").slice(1).join("/").split("/"),
+  }));
+}
+
+export const generateMetadata = async ({ params }: PostPageProps) => {
+  const post = await getPostFromParams(params);
   return {
     title: post!.title,
     description: post!.description,
@@ -29,15 +49,12 @@ export const generateMetadata = ({ params }: any) => {
   };
 };
 
-const PostLayout = ({ params }: any) => {
-  const post = allPosts.find(
-    (post) =>
-      post._raw.flattenedPath.split("/").slice(1).join("/") === params.slug
-  );
+const PostLayout = async ({ params }: PostPageProps) => {
+  const post = await getPostFromParams(params);
 
-  // const author = post!.author.map((author) =>
-  //   allAuthors.find((slug) => slug._id == `authors/${author}.mdx`)
-  // );
+  const authors = post!.author.map((author) =>
+    allAuthors.find(() => "cinemahighway101" == author.replace(/\r$/, ""))
+  );
 
   if (!post) {
     notFound();
@@ -66,7 +83,7 @@ const PostLayout = ({ params }: any) => {
         </h1>
 
         <div className="mt-4 flex space-x-4">
-          {/* {author.map((author) =>
+          {authors.map((author) =>
             author ? (
               <Link
                 href={`https://www.instagram.com/${author.instagram}`}
@@ -86,15 +103,16 @@ const PostLayout = ({ params }: any) => {
                 </div>
               </Link>
             ) : null
-          )} */}
-          <Link
+          )}
+
+          {/* <Link
             href={`https://www.instagram.com/cinemahighway101`}
             className="flex items-center space-x-2 text-sm"
           >
             <Avatar className="rounded-full bg-white">
               <AvatarImage
-                src="https://i.pinimg.com/280x280_RS/b7/42/8b/b7428ba2a7647382f32daef50e7c2859.jpg"
-                alt={`@`}
+                src={author.avatar}
+                alt={`@${author.instagram}`}
               />
             </Avatar>
             <div className="flex-1 text-left leading-tight">
@@ -103,7 +121,7 @@ const PostLayout = ({ params }: any) => {
                 @cinemahighway101
               </p>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
