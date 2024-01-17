@@ -16,7 +16,6 @@ interface PostPageProps {
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
   const post = allPosts.find(
@@ -86,6 +85,7 @@ const PostLayout = async ({ params }: PostPageProps) => {
           {authors.map((author) =>
             author ? (
               <Link
+                key={author._id}
                 href={`https://www.instagram.com/${author.instagram}`}
                 className="flex items-center space-x-2 text-sm"
               >
