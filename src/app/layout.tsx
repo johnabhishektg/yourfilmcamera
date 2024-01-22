@@ -22,7 +22,7 @@ export default function RootLayout({
         publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
       >
         <html lang="en" className={inter.className}>
-          <body className="min-h-screen pt-32 bg-slate-50 antialiased dark:bg-slate-950">
+          <body className="min-h-screen pt-32 bg-slate-50 antialiased dark:bg-black">
             <ThemeProvider
               attribute="class"
               defaultTheme="system"

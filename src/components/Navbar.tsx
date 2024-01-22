@@ -17,7 +17,7 @@ export default async function Navbar() {
   const cartItems = await getCartItems({ cartId: Number(cartId) });
 
   return (
-    <nav className="w-full z-10 top-0 bg-white nav fixed flex justify-between align-center px-10 py-3 border-b dark:bg-slate-950">
+    <nav className="w-full z-10 top-0 bg-white nav fixed flex justify-between align-center px-10 py-3 border-b dark:bg-black">
       <div className="flex items-center gap-8">
         <Link className="flex items-center space-x-1" href={"/"}>
           <Aperture />

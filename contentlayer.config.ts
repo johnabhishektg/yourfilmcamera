@@ -7,43 +7,13 @@ export const Post = defineDocumentType(() => ({
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
+    genre: { type: "string", required: true },
     image: {
       type: "string",
       required: true,
     },
     description: {
       type: "string",
-      required: true,
-    },
-    author: {
-      type: "list",
-      of: { type: "string" },
-      required: true,
-    },
-  },
-  computedFields: {
-    url: {
-      type: "string",
-      resolve: (post) =>
-        `/blog/${post._raw.flattenedPath.split("/").slice(1).join("/")}`,
-    },
-  },
-}));
-
-export const Review = defineDocumentType(() => ({
-  name: "Review",
-  filePathPattern: `reviews/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-    },
-    date: {
-      type: "date",
       required: true,
     },
     author: {
@@ -86,5 +56,5 @@ export const Author = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./src/content",
-  documentTypes: [Post, Author, Review],
+  documentTypes: [Post, Author],
 });

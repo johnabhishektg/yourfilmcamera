@@ -104,24 +104,6 @@ const PostLayout = async ({ params }: PostPageProps) => {
               </Link>
             ) : null
           )}
-
-          {/* <Link
-            href={`https://www.instagram.com/cinemahighway101`}
-            className="flex items-center space-x-2 text-sm"
-          >
-            <Avatar className="rounded-full bg-white">
-              <AvatarImage
-                src={author.avatar}
-                alt={`@${author.instagram}`}
-              />
-            </Avatar>
-            <div className="flex-1 text-left leading-tight">
-              <p className="font-medium">Shakti Iyer</p>
-              <p className="text-[12px] text-muted-foreground">
-                @cinemahighway101
-              </p>
-            </div>
-          </Link> */}
         </div>
       </div>
 
@@ -141,7 +123,6 @@ const PostLayout = async ({ params }: PostPageProps) => {
         <Mdx code={post!.body.code} />
       </div>
 
-      {/* <MdxPager currentItem={post} allItems={allPosts} /> */}
       <div className="flex justify-center items-center">
         <Link
           href="/blog"
