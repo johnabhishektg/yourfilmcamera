@@ -41,15 +41,16 @@ export default async function page() {
         </p>
       </PageHeader>
       <Card
-      // key={storeId}
-      // as="section"
-      // id={`checkout-store-${storeId}`}
-      // aria-labelledby={`checkout-store-${storeId}-heading`}
-      // className={cn(
-      //   cartLineItems[0]?.storeStripeAccountId
-      // ? "border-green-500"
-      // : "border-destructive"
-      // )}
+        className="p-6"
+        // key={storeId}
+        // as="section"
+        // id={`checkout-store-${storeId}`}
+        // aria-labelledby={`checkout-store-${storeId}-heading`}
+        // className={cn(
+        //   cartLineItems[0]?.storeStripeAccountId
+        // ? "border-green-500"
+        // : "border-destructive"
+        // )}
       >
         <CardHeader className="flex flex-row items-center space-x-4 py-4">
           <CardTitle className="line-clamp-1 flex-1">Order Number</CardTitle>
@@ -77,7 +78,7 @@ export default async function page() {
         {/* <CartLineItems items={cartLineItems} className="max-h-[280px]" /> */}
         <Separator className="mb-4" />
         <CardFooter className="space-x-4">
-          <span className="flex-1">
+          <span className="">
             Total ({cartLineItems.reduce((acc, item) => acc + item.quantity, 0)}
             )
           </span>

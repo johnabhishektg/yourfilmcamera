@@ -1,8 +1,5 @@
-import EditButton from "./EditButton";
 import { getAllProducts } from "@/app/(actions)/product";
-import { getCart, getCartItems } from "@/lib/fetchers/cart";
-import { cookies } from "next/headers";
-import { CartItem } from "@/lib/types";
+import EditButton from "./EditButton";
 import { DeleteItem } from "./delete-item";
 
 type CartItemProps = {
