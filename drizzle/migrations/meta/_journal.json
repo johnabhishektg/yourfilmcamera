@@ -15,6 +15,13 @@
       "when": 1701769720589,
       "tag": "0001_wandering_firebird",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1708325053707,
+      "tag": "0002_flimsy_starjammers",
+      "breakpoints": true
     }
   ]
 }

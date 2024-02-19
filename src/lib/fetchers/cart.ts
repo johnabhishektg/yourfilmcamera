@@ -2,8 +2,11 @@ import { cookies } from "next/headers";
 import { db } from "../db";
 import { eq } from "drizzle-orm";
 import { carts, products } from "../db/schema";
+import { CartLineItem } from "../types";
 
-export async function getCart() {
+export async function getCart(input?: {
+  cartId: number;
+}): Promise<CartLineItem[]> {
   const cartId = cookies().get("cartId")?.value;
 
   if (!cartId || isNaN(Number(cartId))) return [];

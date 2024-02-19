@@ -23,7 +23,7 @@ const page: FC<pageProps> = ({}) => {
                 aria-hidden="true"
               />
               <div className="block font-medium transition group-hover:hidden">
-                Skateshop
+                YourFilmCamera
               </div>
               <div className="hidden font-medium transition group-hover:block">
                 Back
@@ -36,7 +36,7 @@ const page: FC<pageProps> = ({}) => {
                 </Button>
               </DrawerTrigger>
               <DrawerContent className="mx-auto flex h-[82%] w-full max-w-4xl flex-col space-y-6 border pb-6 pt-8">
-                <p>Itenms of the cart</p>
+                <p>Items of the cart</p>
                 <div className="container space-y-4 pr-8">
                   <Separator />
                   <div className="flex font-medium">

@@ -67,6 +67,12 @@ export const filterProductsSchema = z.object({
   query: z.string(),
 });
 
+export const checkoutItemSchema = cartItemSchema.extend({
+  price: z.number(),
+});
+
+export type CheckoutItem = z.infer<typeof checkoutItemSchema>;
+
 export const productSchema = z.object({
   name: z.string().min(1, {
     message: "Must be at least 1 character",
@@ -91,3 +97,15 @@ export const productSchema = z.object({
     .nullable()
     .default(null),
 });
+
+// Original source: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
+export function calculateOrderAmount(items: CartLineItem[]) {
+  const total = items.reduce((acc, item) => {
+    return acc + Number(item.price) * item.quantity;
+  }, 0);
+  const fee = total * 0.01;
+  return {
+    total: Number((total * 100).toFixed(0)), // converts to cents which stripe charges in
+    fee: Number((fee * 100).toFixed(0)),
+  };
+}

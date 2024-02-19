@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/Card";
 import { Separator } from "@/components/ui/separator";
 import { getCart, getCartItems } from "@/lib/fetchers/cart";
-import { Product } from "@/lib/types";
+import { Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -41,28 +41,29 @@ export default async function page() {
         </p>
       </PageHeader>
       <Card
-        className="p-6"
-        // key={storeId}
+        className="p-4"
+        key={cartId}
         // as="section"
-        // id={`checkout-store-${storeId}`}
+        id={`checkout-store-${cartId}`}
         // aria-labelledby={`checkout-store-${storeId}-heading`}
         // className={cn(
-        //   cartLineItems[0]?.storeStripeAccountId
-        // ? "border-green-500"
-        // : "border-destructive"
+        //   cartItems[0]?.quantity
+        //     ? "border-green-500 p-4"
+        //     : "border-destructive p-4"
         // )}
       >
         <CardHeader className="flex flex-row items-center space-x-4 py-4">
           <CardTitle className="line-clamp-1 flex-1">Order Number</CardTitle>
           <Link
             aria-label="Checkout"
-            href={`/checkout`}
+            href={`/checkout/${cartId}`}
             className={cn(
               buttonVariants({
                 size: "sm",
               })
             )}
           >
+            <Lock className="w-4 h-4 mr-1" />
             Checkout
           </Link>
         </CardHeader>
@@ -75,10 +76,9 @@ export default async function page() {
           </CardContent>
         )}
 
-        {/* <CartLineItems items={cartLineItems} className="max-h-[280px]" /> */}
         <Separator className="mb-4" />
-        <CardFooter className="space-x-4">
-          <span className="">
+        <CardFooter className="space-x-4 justify-center">
+          <span className="flex-1">
             Total ({cartLineItems.reduce((acc, item) => acc + item.quantity, 0)}
             )
           </span>
