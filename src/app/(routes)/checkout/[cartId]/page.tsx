@@ -2,6 +2,7 @@ import { createPaymentIntent } from "@/app/(actions)/stripe";
 import { CheckoutForm } from "@/components/CheckoutForm";
 import { CheckoutShell } from "@/components/CheckoutShell";
 import CartItem from "@/components/cart/CartItem";
+import CartItemsEdit from "@/components/cart/CartItemsEdit";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -37,7 +38,6 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
   const cart = await db
     .select({
       id: carts.id,
-      name: carts.id,
       stripeAccountId: carts.stripeAccountId,
     })
     .from(carts)
@@ -147,20 +147,15 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
             </Drawer>
           </div>
         </div>
-        <div className="container flex max-w-xl flex-col items-center space-y-1 lg:ml-auto lg:mr-0 lg:items-start lg:pr-[4.5rem]">
+        <div className="flex max-w-xl flex-col items-center space-y-1 lg:ml-auto lg:mr-0 lg:items-start lg:pr-[4.5rem]">
           <div className="line-clamp-1 font-semibold text-muted-foreground">
             Pay
           </div>
           <div className="text-3xl font-bold">{formatPrice(total)}</div>
         </div>
-        {cartItems?.map((item: any) => (
-          <CartItem key={item.id} {...item} />
-        ))}
-        {/* <CartLineItems
-          items={cartLineItems}
-          isEditable={false}
-          className="container hidden w-full max-w-xl lg:ml-auto lg:mr-0 lg:flex lg:max-h-[580px] lg:pr-[4.5rem]"
-        /> */}
+        {/* {cartItems?.map((item: any) => (
+          <CartItemsEdit key={item.id} {...item} />
+        ))} */}
       </div>
       <CheckoutShell
         paymentIntentPromise={paymentIntentPromise}

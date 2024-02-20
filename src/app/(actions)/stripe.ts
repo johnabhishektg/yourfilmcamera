@@ -23,7 +23,7 @@ export async function manageSubscription(
 ) {
   const input = manageSubscriptionSchema.parse(rawInput);
 
-  const billingUrl = "http://localhost:3000/dashboard/billing";
+  const billingUrl = "http://localhost:3000/checkout/successs";
 
   const user = await currentUser();
 
@@ -31,7 +31,7 @@ export async function manageSubscription(
     throw new Error("User not found.");
   }
 
-  const email = "john@example.com";
+  const email = "john@gmail.com";
 
   // If the user is already subscribed to a plan, we redirect them to the Stripe billing portal
   if (input.isSubscribed && input.stripeCustomerId && input.isCurrentPlan) {
@@ -93,8 +93,8 @@ export async function createAccountLink(
 
   const accountLink = await stripe.accountLinks.create({
     account: stripeAccountId,
-    refresh_url: absoluteUrl(`/dashboard/stores/${input.cartId}`),
-    return_url: absoluteUrl(`/dashboard/stores/${input.cartId}`),
+    refresh_url: absoluteUrl(`/checkout/${input.cartId}`),
+    return_url: absoluteUrl(`/checkout/${input.cartId}`),
     type: "account_onboarding",
   });
 

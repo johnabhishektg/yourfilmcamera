@@ -1,7 +1,8 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { carts, products } from "@/lib/db/schema";
+import { stripe } from "@/lib/stripe";
+import { carts, payments, products } from "@/lib/db/schema";
 import {
   cartItemSchema,
   deleteCartItemSchema,
@@ -84,10 +85,19 @@ export async function addToCart(rawInput: z.infer<typeof cartItemSchema>) {
     cart.items?.push(input);
   }
 
+  // const numId = Number(cartId);
+
+  const account = await stripe.accounts.create({ type: "standard" });
+
+  if (!account) {
+    throw new Error("Error creating Stripe account.");
+  }
+
   await db
     .update(carts)
     .set({
       items: cart.items,
+      stripeAccountId: account.id,
     })
     .where(eq(carts.id, Number(cartId)));
 

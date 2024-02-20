@@ -1,6 +1,7 @@
+import CheckoutButton from "@/components/CheckoutButton";
+import { ConnectStoreToStripeButton } from "@/components/ConnectToStripe";
 import CartItem from "@/components/cart/CartItem";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
-import { buttonVariants } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -10,11 +11,8 @@ import {
 } from "@/components/ui/Card";
 import { Separator } from "@/components/ui/separator";
 import { getCart, getCartItems } from "@/lib/fetchers/cart";
-import { Lock } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Cart",
@@ -25,6 +23,7 @@ export default async function page() {
   const cartLineItems = await getCart();
 
   const cartId = cookies().get("cartId")?.value;
+
   const cartItems = await getCartItems({ cartId: Number(cartId) });
 
   const itemCount = cartLineItems.reduce(
@@ -35,7 +34,10 @@ export default async function page() {
   return (
     <div className="container">
       <PageHeader>
-        <PageHeaderHeading>Cart</PageHeaderHeading>
+        <PageHeaderHeading>
+          Cart <ConnectStoreToStripeButton cartId={Number(cartId)} />
+        </PageHeaderHeading>
+
         <p className="text-muted-foreground text-sm">
           Checkout with your cart items
         </p>
@@ -54,18 +56,7 @@ export default async function page() {
       >
         <CardHeader className="flex flex-row items-center space-x-4 py-4">
           <CardTitle className="line-clamp-1 flex-1">Order Number</CardTitle>
-          <Link
-            aria-label="Checkout"
-            href={`/checkout/${cartId}`}
-            className={cn(
-              buttonVariants({
-                size: "sm",
-              })
-            )}
-          >
-            <Lock className="w-4 h-4 mr-1" />
-            Checkout
-          </Link>
+          <CheckoutButton cartId={Number(cartId)} />
         </CardHeader>
         <Separator className="mb-4" />
         {itemCount > 0 && (

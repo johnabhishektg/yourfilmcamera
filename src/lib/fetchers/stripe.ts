@@ -44,7 +44,7 @@ export async function getStripeAccount(
 
     if (!payment || !payment.stripeAccountId) return falsyReturn;
 
-    if (!retrieveAccount)
+    if (retrieveAccount)
       return {
         isConnected: true,
         account: null,
@@ -163,6 +163,8 @@ export async function getPaymentIntent(
         stripeAccount: payment.stripeAccountId,
       }
     );
+
+    console.log(paymentIntent);
 
     if (paymentIntent.status !== "succeeded") {
       throw new Error("Payment intent not succeeded.");
