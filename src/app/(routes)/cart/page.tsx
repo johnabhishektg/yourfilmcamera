@@ -1,6 +1,6 @@
-import { Lock } from "lucide-react";
 import CartItem from "@/components/cart/CartItem";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
+import { buttonVariants } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/Card";
 import { Separator } from "@/components/ui/separator";
 import { getCart, getCartItems } from "@/lib/fetchers/cart";
+import { cn } from "@/lib/utils";
+import { Lock } from "lucide-react";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Cart",
@@ -57,13 +57,13 @@ export default async function page() {
         <CardHeader className="flex flex-row items-center space-x-4 py-4">
           <CardTitle className="line-clamp-1 flex-1">Order Number</CardTitle>
           <Link
+            href={`/checkout`}
             className={cn(
               buttonVariants({
                 className: "flex gap-1",
                 size: "sm",
               })
             )}
-            href={`/checkout/${cartId}`}
           >
             <Lock className="w-4 h-4 mr-1" />
             Checkout
