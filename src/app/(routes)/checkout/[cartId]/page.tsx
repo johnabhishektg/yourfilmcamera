@@ -1,4 +1,3 @@
-import { createPaymentIntent } from "@/app/(actions)/stripe";
 import { CheckoutForm } from "@/components/CheckoutForm";
 import { CheckoutShell } from "@/components/CheckoutShell";
 import CartItem from "@/components/cart/CartItem";
@@ -10,7 +9,6 @@ import { Separator } from "@/components/ui/separator";
 import { db } from "@/lib/db";
 import { carts } from "@/lib/db/schema";
 import { getCart, getCartItems } from "@/lib/fetchers/cart";
-import { getStripeAccount } from "@/lib/fetchers/stripe";
 import { cn, formatPrice } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { ArrowLeftIcon } from "lucide-react";
@@ -49,48 +47,37 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
     notFound();
   }
 
-  const { isConnected } = await getStripeAccount({
-    cartId,
-  });
-
   const cartLineItems = await getCart({ cartId });
-
-  const paymentIntentPromise = createPaymentIntent({
-    cartId: cart.id,
-    items: cartLineItems,
-  });
 
   const total = cartLineItems.reduce(
     (total, item) => total + item.quantity * Number(item.price),
     0
   );
 
-  if (!(isConnected && cart.stripeAccountId)) {
-    return (
-      <div className="container">
-        <div className="flex flex-col items-center justify-center gap-2 pt-20">
-          <div className="text-center text-2xl font-bold">
-            Store is not connected to Stripe
-          </div>
-          <div className="text-center text-muted-foreground">
-            Store owner needs to connect their store to Stripe to accept
-            payments
-          </div>
-          <Link
-            aria-label="Back to cart"
-            href="/cart"
-            className={cn(
-              buttonVariants({
-                size: "sm",
-              })
-            )}
-          >
-            Back to cart
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  // return (
+  //   <div className="container">
+  //     <div className="flex flex-col items-center justify-center gap-2 pt-20">
+  //       <div className="text-center text-2xl font-bold">
+  //         Store is not connected to Stripe
+  //       </div>
+  //       <div className="text-center text-muted-foreground">
+  //         Store owner needs to connect their store to Stripe to accept
+  //         payments
+  //       </div>
+  //       <Link
+  //         aria-label="Back to cart"
+  //         href="/cart"
+  //         className={cn(
+  //           buttonVariants({
+  //             size: "sm",
+  //           })
+  //         )}
+  //       >
+  //         Back to cart
+  //       </Link>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <section className="relative flex h-full min-h-[100dvh] flex-col items-start justify-center lg:h-[100dvh] lg:flex-row lg:overflow-hidden">
@@ -121,7 +108,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
               </DrawerTrigger>
               <DrawerContent className="mx-auto flex h-[82%] w-full max-w-4xl flex-col space-y-6 border pb-6 pt-8">
                 {cartItems?.map((item: any) => (
-                  <CartItem key={item.id} {...item} />
+                  <CartItemsEdit key={item.id} {...item} />
                 ))}
                 {/* <CartLineItems
                   items={cartLineItems}
@@ -153,22 +140,20 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
           </div>
           <div className="text-3xl font-bold">{formatPrice(total)}</div>
         </div>
-        {/* {cartItems?.map((item: any) => (
+        {cartItems?.map((item: any) => (
           <CartItemsEdit key={item.id} {...item} />
-        ))} */}
+        ))}
       </div>
-      <CheckoutShell
-        paymentIntentPromise={paymentIntentPromise}
-        StripeAccountId={cart.stripeAccountId}
+      {/* <CheckoutShell
         className="size-full flex-1 bg-white pb-12 pt-10 lg:flex-initial lg:pl-12 lg:pt-16"
       >
-        <ScrollArea className="h-full">
-          <CheckoutForm
-            cartId={cart.id}
-            className="container max-w-xl pr-6 lg:ml-0 lg:mr-auto"
-          />
-        </ScrollArea>
-      </CheckoutShell>
+      <ScrollArea className="h-full">
+        <CheckoutForm
+          cartId={cart.id}
+          className="container max-w-xl pr-6 lg:ml-0 lg:mr-auto"
+        />
+      </ScrollArea>
+      </CheckoutShell> */}
     </section>
   );
 }

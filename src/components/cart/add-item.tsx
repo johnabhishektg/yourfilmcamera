@@ -29,7 +29,7 @@ export function AddToCartButton({ id, name, className }: any) {
               description: `${name} has been added to your cart`,
               action: (
                 // link to go to the checkout page
-                <Link href="/">
+                <Link href="/cart">
                   <ToastAction altText="View">View</ToastAction>
                 </Link>
               ),

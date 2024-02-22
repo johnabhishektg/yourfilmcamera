@@ -1,3 +1,4 @@
+import { User } from "@clerk/nextjs/dist/types/server";
 import { type ClassValue, clsx } from "clsx";
 import { customAlphabet } from "nanoid";
 import { toast } from "sonner";
@@ -59,4 +60,12 @@ export function formatPrice(
     currency,
     notation,
   }).format(Number(price));
+}
+
+export function getUserEmail(user: User | null) {
+  const email =
+    user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
+      ?.emailAddress ?? "";
+
+  return email;
 }

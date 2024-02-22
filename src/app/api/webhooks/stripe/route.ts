@@ -1,8 +1,7 @@
 import { db } from "@/lib/db";
-import { addresses, carts, orders, payments } from "@/lib/db/schema";
+import { carts } from "@/lib/db/schema";
 import { stripe } from "@/lib/stripe";
 import { CheckoutItem, checkoutItemSchema } from "@/lib/types";
-import { clerkClient } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import type Stripe from "stripe";
@@ -64,48 +63,48 @@ export async function POST(req: Request) {
             throw new Error("Could not parse items.");
           }
 
-          const payment = await db.query.payments.findFirst({
-            columns: {
-              id: true,
-            },
-            where: eq(payments.stripeAccountId, event.account),
-          });
+          // const payment = await db.query.payments.findFirst({
+          //   columns: {
+          //     id: true,
+          //   },
+          //   where: eq(payments.stripeAccountId, event.account),
+          // });
 
-          if (!payment?.id) {
-            return new Response("Store not found.", { status: 404 });
-          }
+          // if (!payment?.id) {
+          //   return new Response("Store not found.", { status: 404 });
+          // }
 
-          // Create new address in DB
-          const stripeAddress = paymentIntentSucceeded?.shipping?.address;
+          //       // Create new address in DB
+          //       const stripeAddress = paymentIntentSucceeded?.shipping?.address;
 
-          const newAddress = await db.insert(addresses).values({
-            line1: stripeAddress?.line1,
-            line2: stripeAddress?.line2,
-            city: stripeAddress?.city,
-            state: stripeAddress?.state,
-            country: stripeAddress?.country,
-            postalCode: stripeAddress?.postal_code,
-          });
+          //       const newAddress = await db.insert(addresses).values({
+          //         line1: stripeAddress?.line1,
+          //         line2: stripeAddress?.line2,
+          //         city: stripeAddress?.city,
+          //         state: stripeAddress?.state,
+          //         country: stripeAddress?.country,
+          //         postalCode: stripeAddress?.postal_code,
+          //       });
 
-          if (!newAddress.insertId) throw new Error("No address created.");
+          //       if (!newAddress.insertId) throw new Error("No address created.");
 
-          // Create new order in db
-          await db.insert(orders).values({
-            id: payment.id,
-            items: checkoutItems ?? [],
-            quantity: safeParsedItems.data.reduce(
-              (acc: any, item: { quantity: any }) => acc + item.quantity,
-              0
-            ),
-            amount: String(Number(orderAmount) / 100),
-            stripePaymentIntentId: paymentIntentId,
-            stripePaymentIntentStatus: paymentIntentSucceeded?.status,
-            name: paymentIntentSucceeded?.shipping?.name,
-            email: paymentIntentSucceeded?.receipt_email,
-            addressId: Number(newAddress.insertId),
-          });
+          //       // Create new order in db
+          //       await db.insert(orders).values({
+          //         id: payment.id,
+          //         items: checkoutItems ?? [],
+          //         quantity: safeParsedItems.data.reduce(
+          //           (acc: any, item: { quantity: any }) => acc + item.quantity,
+          //           0
+          //         ),
+          //         amount: String(Number(orderAmount) / 100),
+          //         stripePaymentIntentId: paymentIntentId,
+          //         stripePaymentIntentStatus: paymentIntentSucceeded?.status,
+          //         name: paymentIntentSucceeded?.shipping?.name,
+          //         email: paymentIntentSucceeded?.receipt_email,
+          //         addressId: Number(newAddress.insertId),
+          //       });
 
-          // Close cart and clear items
+          //       // Close cart and clear items
           await db
             .update(carts)
             .set({
@@ -118,16 +117,16 @@ export async function POST(req: Request) {
         }
       }
       break;
-    case "application_fee.created":
-      const applicationFeeCreated = event.data.object;
-      console.log(`Application fee id: ${applicationFeeCreated.id}`);
-      break;
-    case "charge.succeeded":
-      const chargeSucceeded = event.data.object;
-      console.log(`Charge id: ${chargeSucceeded.id}`);
-      break;
-    default:
-      console.warn(`Unhandled event type: ${event.type}`);
+    // case "application_fee.created":
+    //   const applicationFeeCreated = event.data.object;
+    //   console.log(`Application fee id: ${applicationFeeCreated.id}`);
+    //   break;
+    // case "charge.succeeded":
+    //   const chargeSucceeded = event.data.object;
+    //   console.log(`Charge id: ${chargeSucceeded.id}`);
+    //   break;
+    // default:
+    //   console.warn(`Unhandled event type: ${event.type}`);
   }
 
   return new Response(null, { status: 200 });
