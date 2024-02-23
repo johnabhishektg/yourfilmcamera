@@ -1,4 +1,4 @@
-import { Aperture } from "lucide-react";
+import { Aperture, Plus } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import UserAuthButton from "./UserAuthButton";
@@ -8,10 +8,14 @@ import NavItems from "./NavItems";
 import { currentUser } from "@clerk/nextjs";
 import { getCart, getCartItems } from "@/lib/fetchers/cart";
 import { cookies } from "next/headers";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "./ui/Button";
 
 export default async function Navbar() {
   const user = await currentUser();
   const cartLineItems = await getCart();
+
+  const userRole = user?.publicMetadata?.role;
 
   const cartId = cookies().get("cartId")?.value;
   const cartItems = await getCartItems({ cartId: Number(cartId) });
@@ -30,10 +34,29 @@ export default async function Navbar() {
         </ul>
       </div>
 
-      <div className="space-x-4 flex justify-center items-center">
-        <CartButton cartLineItems={cartLineItems} cartItems={cartItems} />
-        {user ? <UserButton afterSignOutUrl="/" /> : <UserAuthButton />}
-      </div>
+      {userRole == "admin" ? (
+        <div className="space-x-4 flex justify-center items-center">
+          <CartButton cartLineItems={cartLineItems} cartItems={cartItems} />
+          {user ? <UserButton afterSignOutUrl="/" /> : <UserAuthButton />}
+          <Link
+            className={cn(
+              buttonVariants({
+                className: "rounded-full",
+                size: "sm",
+                variant: "outline",
+              })
+            )}
+            href={`/create/product`}
+          >
+            <Plus className="w-4 h-4" />
+          </Link>
+        </div>
+      ) : (
+        <div className="space-x-4 flex justify-center items-center">
+          <CartButton cartLineItems={cartLineItems} cartItems={cartItems} />
+          {user ? <UserButton afterSignOutUrl="/" /> : <UserAuthButton />}
+        </div>
+      )}
     </nav>
   );
 }

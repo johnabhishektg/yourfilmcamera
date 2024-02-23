@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { AddToCartButton } from "./cart/add-item";
+import Link from "next/link";
 
 type ProductItemsProps = {
   id: number;
@@ -28,7 +29,9 @@ export default function ProductItems(product: ProductItemsProps) {
       />
       <footer className="p-4">
         <p className="text-xs font-bold text-gray-400">NEW </p>
-        <h2 className="mt-1 font-medium text-primary">{product.name}</h2>
+        <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/product/${product.id}`}>
+          <h2 className="mt-1 font-medium text-primary">{product.name}</h2>
+        </Link>
         <div className="mt-2 flex justify-between items-center content-center">
           <p className="font-bold text-2xl">${product.price}</p>
           <AddToCartButton id={product.id} name={product.name} />

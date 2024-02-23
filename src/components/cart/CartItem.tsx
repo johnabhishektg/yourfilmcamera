@@ -1,6 +1,7 @@
 import { getAllProducts } from "@/app/(actions)/product";
 import EditButton from "./EditButton";
 import { DeleteItem } from "./delete-item";
+import Link from "next/link";
 
 type CartItemProps = {
   images: string;
@@ -33,7 +34,7 @@ export default async function CartItem(product: CartItemProps) {
         />
         <div className="ml-6 w-full text-left md:w-52 sm:ml-4">
           <h4 className="text-sm font-semibold text-primary">
-            {item.name}{" "}
+            {item.name}
             <span className="font-medium text-gray-400"> (x{quantity})</span>
           </h4>
           <p className="text-primary">${item.price}</p>
